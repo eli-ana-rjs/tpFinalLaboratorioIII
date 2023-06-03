@@ -4,6 +4,16 @@ import java.util.ArrayList;
 
 public class Cliente extends Usuario{
 
+    //region Properties
+    public Genero genero;
+    protected String domicilio;
+    protected boolean isPremium ;
+    protected TipoDePlan tipoDePlan;
+    protected boolean estaLogueado;
+    protected Biblioteca biblioteca;
+
+    //endregion
+
     private ArrayList<Cancion> misCanciones = new ArrayList<Cancion>();
     private ArrayList<Playlist> miPlaylist = new ArrayList<Playlist>();
 

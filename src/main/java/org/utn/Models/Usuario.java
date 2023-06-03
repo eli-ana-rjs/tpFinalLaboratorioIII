@@ -28,7 +28,7 @@ public  abstract class Usuario {
 
     //endregion
 
-//region Getters y Setters
+    //region Getters y Setters
 
     public String getNombre() {
         return nombre;
