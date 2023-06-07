@@ -5,17 +5,27 @@ import org.utn.Models.Usuario;
 public class UsuarioRepo implements IRepository<Usuario>{
 
     @Override
-    public void cargar() {
+    public void cargarJson() {
 
     }
 
     @Override
-    public void guardar() {
+    public void guardarJson() {
+
+    }
+
+    @Override
+    public void agregar() {
 
     }
 
     @Override
     public void buscar() {
+
+    }
+
+    @Override
+    public void verUno() {
 
     }
 
@@ -34,8 +44,5 @@ public class UsuarioRepo implements IRepository<Usuario>{
 
     }
 
-    @Override
-    public void agregar() {
 
-    }
 }

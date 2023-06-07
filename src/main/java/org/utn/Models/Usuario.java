@@ -26,6 +26,11 @@ public  abstract class Usuario {
         this.idUsuario = ++Usuario.id;
     }
 
+    public Usuario(String userName, String password){
+        this.userName = userName;
+        this.password = password;
+    }
+
     //endregion
 
     //region Getters y Setters
