@@ -7,7 +7,7 @@ public class Cancion {
     private String album;
     private String duracion;
     private String comentarios;
-    private static int id;
+    private static int id=0;
     private int idCancion;
 
     //region Constructores
@@ -75,7 +75,6 @@ public class Cancion {
     public void setIdCancion(int idCancion) {
         this.idCancion = idCancion;
     }
-
 
     //endregion
 }

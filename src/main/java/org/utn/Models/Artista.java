@@ -7,7 +7,7 @@ public class Artista {
 
     //region Constructores
 
-    public Artista() {
+    public Artista() { 
     }
 
     public Artista(String nombreArtista, String genero) {
