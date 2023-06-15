@@ -11,12 +11,10 @@ public interface IRepository<T> {
     List<T> listar();
     // Acciones
 
-    void agregar(T... obj);
-    void verUno(int id);
-    boolean buscar(int id);
-    void modificar(int id);
-    void eliminar(int id);
-
+    boolean buscar(T objeto);
+    void modificar(T objeto);
+    void eliminar(T objeto);
+    void agregar(T objeto);
 
 
 }

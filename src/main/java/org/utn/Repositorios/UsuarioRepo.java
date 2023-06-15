@@ -17,6 +17,7 @@ public class UsuarioRepo implements IRepository<Usuario> {
     private List<Usuario> listaUsuarios;
 
     @Override
+
     public void cargarJson() {
         try {
             CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(List.class, Usuario.class);
@@ -30,80 +31,28 @@ public class UsuarioRepo implements IRepository<Usuario> {
     public void guardarJson() {
         try {
             mapper.writerWithDefaultPrettyPrinter().writeValue(archivo, this.listaUsuarios);
-
-        } catch (IOException e) {
-            throw new RuntimeException("No se pudo guardar el archivo", e);
-        }
-    }
-
-        @Override
-        public void agregar (Usuario...obj){
-
-            cargarJson();
-            this.listaUsuarios.addAll(List.of(obj));
-            guardarJson();
-
-        }
-
-        @Override
-        public boolean buscar ( int idUsuario){
-            for (Usuario usuario : listaUsuarios) {
-                if (usuario.getIdUsuario() == idUsuario) {
-                    return true;
-                }
+        } catch(IOException e){
+                throw new RuntimeException("No se pudo guardar el archivo", e);
             }
-            System.out.println("Usuario no encontrado");
-            return false;
         }
 
-        @Override
-        public void verUno ( int idUsuario){
-            cargarJson();
-            boolean usuarioEncontrado = buscar(idUsuario);
-            if (usuarioEncontrado) {
-                for (Usuario usuario : listaUsuarios) {
-                    if (usuario.getIdUsuario() == idUsuario) {
-                        System.out.println(usuario);
-                        return;
-                    }
-                }
-            }
-            System.out.println("Usuario no encontrado");
-        }
-
-        @Override
-        public void modificar ( int idUsuario){
-            cargarJson();
-            for (int i = 0; i < listaUsuarios.size(); i++) {
-                Usuario usuario = listaUsuarios.get(i);
-                if (usuario.getIdUsuario() == idUsuario) {
-                    listaUsuarios.set(i, usuario);
-                    guardarJson();
-                    System.out.println("Usuario modificado exitosamente");
-                    return;
-                }
-            }
-            System.out.println("Usuario no encontrado");
-        }
-
-        @Override
-        public void eliminar ( int idUsuario){
-            cargarJson();
-            for(Usuario prod: this.listaUsuarios){
-
-                if(prod.getIdUsuario() == idUsuario){
-                    this.listaUsuarios.remove(prod);
-                    break;
-                }
-            }
-            guardarJson();
-        }
 
         @Override
         public List<Usuario> listar () {
-        cargarJson();
-        return this.listaUsuarios;
+            cargarJson();
+            return this.listaUsuarios;
         }
 
 
+        @Override
+        public void eliminar (Usuario objeto){
+
+        }
+
+
+        @Override
+        public void agregar (Usuario objeto){
+
+
+        }
     }
