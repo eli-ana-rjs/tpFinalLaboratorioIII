@@ -1,0 +1,29 @@
+[ {
+  "nombre" : "Nelson",
+  "apellido" : "Gonzalez",
+  "email" : "robert@example.com",
+  "fechaNacimiento" : "15-07-1995",
+  "userName" : "nelson67",
+  "password" : "34981023",
+  "estaLogueado" : false,
+  "genero" : "MASCULINO",
+  "domicilio" : "Pine Street 789",
+  "tipoDePlan" : "INDIVIDUAL",
+  "premium" : true,
+  "admin" : false,
+  "idUsuario" : 1
+}, {
+  "nombre" : "Ana",
+  "apellido" : "Gonzalez",
+  "email" : "robert@example.com",
+  "fechaNacimiento" : "15-07-1995",
+  "userName" : "ne",
+  "password" : "34981023",
+  "estaLogueado" : false,
+  "genero" : "MASCULINO",
+  "domicilio" : "Pine Street 789",
+  "tipoDePlan" : "INDIVIDUAL",
+  "premium" : true,
+  "admin" : false,
+  "idUsuario" : 2
+} ]
