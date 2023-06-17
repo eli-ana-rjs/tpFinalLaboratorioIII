@@ -27,4 +27,6 @@ public class GestionCancion {
         return encontrar;
     }
 
+    public void modificarNombreCancion(Cancion objeto, String nombre) {
+    }
 }

@@ -13,6 +13,7 @@ public class CancionRepo implements IRepository<Cancion> {
     public List<Cancion> listaCanciones;
 
 
+//region OVerrides
     @Override
     public void cargar() {
         try {
@@ -47,7 +48,17 @@ public class CancionRepo implements IRepository<Cancion> {
 
     @Override
     public void modificar(Cancion objeto) {
+    }
 
+    public void modificarNombreCancion(Cancion objeto, String nombre) {
+        cargar();
+
+        for(Cancion c : this.listaCanciones){
+            if(objeto.getNombre().equals(c.getNombre()) && objeto.getArtista().equals(c.getArtista())){
+                c.setNombre(nombre);
+            }
+        }
+        guardar();
     }
 
     @Override
@@ -61,17 +72,15 @@ public class CancionRepo implements IRepository<Cancion> {
     }
 
     @Override
-    public void listar () {
-            cargar();
-            for (Cancion c : this.listaCanciones) {
-                System.out.println(c.toString());
-            }
-        }
+    public List<Cancion> listar() {
+        return null;
+    }
+
     @Override
-    public void agregar (Cancion objeto){
-            cargar();
-            this.listaCanciones.add(objeto);
-            guardar();
+    public void agregar (Cancion ... objeto){
+
         }
+
+//endregion
     }
 

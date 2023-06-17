@@ -88,15 +88,15 @@ public class Cancion implements Serializable {
 
     @Override
     public String toString() {
-        return "Cancion{" +
-                "nombre='" + nombre + '\'' +
-                ", artista='" + artista + '\'' +
-                ", album='" + album + '\'' +
-                ", duracion='" + duracion + '\'' +
-                ", comentarios='" + comentarios + '\'' +
-                ", genero=" + genero +
-                ", idCancion=" + idCancion +
-                '}';
+        return "Cancion <<" +
+                "Nombre: " + nombre + '\'' +
+                ", Artista: " + artista + '\'' +
+                ", Album='" + album + '\'' +
+                ", Duracion: " + duracion + '\'' +
+                ", Comentarios: " + comentarios + '\'' +
+                ", Genero: " + genero +
+                ", IdCancion: " + idCancion +
+                " >>";
     }
 
     @Override
@@ -113,5 +113,5 @@ public class Cancion implements Serializable {
     }
 
 
-    //
+    //endregion
 }
