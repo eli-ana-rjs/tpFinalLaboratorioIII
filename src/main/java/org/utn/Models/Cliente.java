@@ -1,8 +1,9 @@
 package org.utn.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cliente extends Usuario{
+public class Cliente extends Usuario implements Serializable {
 
     //region Properties
     public Genero genero;
@@ -10,12 +11,9 @@ public class Cliente extends Usuario{
     protected boolean isPremium ;
     protected TipoDePlan tipoDePlan;
     protected boolean estaLogueado;
-    protected Biblioteca biblioteca;
+    protected Biblioteca biblioteca; // arreglo de ids de playlists
 
     //endregion
-
-    private ArrayList<Cancion> misCanciones = new ArrayList<Cancion>();
-    private ArrayList<Playlist> miPlaylist = new ArrayList<Playlist>();
 
     //region Constructor
     public Cliente() {
@@ -28,20 +26,69 @@ public class Cliente extends Usuario{
 
 //region Getters y Setters
 
-    public ArrayList<Cancion> getMisCanciones() {
-        return misCanciones;
+    public Genero getGenero() {
+        return genero;
     }
 
-    public void setMisCanciones(ArrayList<Cancion> misCanciones) {
-        this.misCanciones = misCanciones;
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
 
-    public ArrayList<Playlist> getMiPlaylist() {
-        return miPlaylist;
+    public String getDomicilio() {
+        return domicilio;
     }
 
-    public void setMiPlaylist(ArrayList<Playlist> miPlaylist) {
-        this.miPlaylist = miPlaylist;
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public boolean isPremium() {
+        return isPremium;
+    }
+
+    public void setPremium(boolean premium) {
+        isPremium = premium;
+    }
+
+    public TipoDePlan getTipoDePlan() {
+        return tipoDePlan;
+    }
+
+    public void setTipoDePlan(TipoDePlan tipoDePlan) {
+        this.tipoDePlan = tipoDePlan;
+    }
+
+    public boolean isEstaLogueado() {
+        return estaLogueado;
+    }
+
+    public void setEstaLogueado(boolean estaLogueado) {
+        this.estaLogueado = estaLogueado;
+    }
+
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+    }
+
+
+//endregion
+
+//region Overrides
+
+    @Override
+    public String toString() {
+        return "Cliente <<" +
+                "Genero: " + genero +
+                ", Domicilio: " + domicilio +
+                ", IsPremium: " + isPremium +
+                ", Tipo de plan: " + tipoDePlan +
+                ", EstaLogueado: " + estaLogueado +
+                ", Biblioteca: " + biblioteca +
+                " >>";
     }
 
 

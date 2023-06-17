@@ -1,0 +1,49 @@
+[ {
+  "nombre" : "Mic Drop",
+  "artista" : "BTS",
+  "album" : "Love Yourself: Her",
+  "duracion" : 4,
+  "comentarios" : "Buena para bailar",
+  "genero" : "KPOP",
+  "idCancion" : 1
+}, {
+  "nombre" : "A Place Where You Belong",
+  "artista" : "Bullet for my Valentine",
+  "album" : "Fever",
+  "duracion" : 5,
+  "comentarios" : "Muy buena",
+  "genero" : "METAL",
+  "idCancion" : 2
+}, {
+  "nombre" : "Too Many Tears",
+  "artista" : "Whitesnake",
+  "album" : "Restless Heart",
+  "duracion" : 5,
+  "comentarios" : "Clasico",
+  "genero" : "ROCK",
+  "idCancion" : 3
+}, {
+  "nombre" : "Levitating",
+  "artista" : "Dua Lipa",
+  "album" : "Future Nostalgia",
+  "duracion" : 4,
+  "comentarios" : "Im levitating...",
+  "genero" : "POP",
+  "idCancion" : 4
+}, {
+  "nombre" : "Llamado de emergencia",
+  "artista" : "Daddy Yankee",
+  "album" : "Talento de Barrio",
+  "duracion" : 5,
+  "comentarios" : "The big boss",
+  "genero" : "REGGAETON",
+  "idCancion" : 5
+}, {
+  "nombre" : "Es Epico",
+  "artista" : "Canserbero",
+  "album" : "Muerte",
+  "duracion" : 6,
+  "comentarios" : "Batalla final",
+  "genero" : "RAP",
+  "idCancion" : 6
+} ]

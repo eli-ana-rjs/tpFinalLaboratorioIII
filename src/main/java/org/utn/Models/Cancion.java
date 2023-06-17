@@ -1,13 +1,17 @@
 package org.utn.Models;
 
-public class Cancion {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Cancion implements Serializable {
 
     private String nombre;
     private String artista;
     private String album;
     private String duracion;
     private String comentarios;
-    private static int id;
+    private GeneroCancion genero;
+    private static int id; // Como los atributos static no se persisten nunca va a aumentar el num de id. Agregar incremental metodo
     private int idCancion;
 
     //region Constructores
@@ -74,6 +78,38 @@ public class Cancion {
 
     public void setIdCancion(int idCancion) {
         this.idCancion = idCancion;
+    }
+
+
+    //endregion
+
+    //region OVerrides
+
+
+    @Override
+    public String toString() {
+        return "Cancion <<" +
+                "Nombre: " + nombre + '\'' +
+                ", Artista: " + artista + '\'' +
+                ", Album='" + album + '\'' +
+                ", Duracion: " + duracion + '\'' +
+                ", Comentarios: " + comentarios + '\'' +
+                ", Genero: " + genero +
+                ", IdCancion: " + idCancion +
+                " >>";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cancion cancion = (Cancion) o;
+        return idCancion == cancion.idCancion && Objects.equals(nombre, cancion.nombre) && Objects.equals(artista, cancion.artista) && Objects.equals(album, cancion.album) && Objects.equals(duracion, cancion.duracion) && Objects.equals(comentarios, cancion.comentarios) && genero == cancion.genero;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, artista, album, duracion, comentarios, genero, idCancion);
     }
 
 
