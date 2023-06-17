@@ -53,7 +53,7 @@ public class AdminRepo implements IRepository<Administrador> {
     }
 
     @Override
-    public void agregar(Administrador ... objeto) {
+    public void agregar(Administrador... objeto) {
 
     }
 
