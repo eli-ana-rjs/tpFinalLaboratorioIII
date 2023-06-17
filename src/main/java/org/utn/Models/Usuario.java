@@ -1,5 +1,7 @@
 package org.utn.Models;
 
+import java.util.Objects;
+
 public  abstract class Usuario {
 
     protected String nombre;
@@ -9,48 +11,34 @@ public  abstract class Usuario {
     protected String userName;
     protected String password;
     protected boolean estaLogueado;
-    protected boolean isAdmin;
-    private static int id;
-    protected int idUsuario = id;
+    protected boolean admin;
+    private static int contadorId = 0 ;
+    protected transient int id;
 
 
     //region Constructores
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String email, String fechaNacimiento, String userName, String password, boolean estaLogueado, boolean isAdmin) {
+    public Usuario(String nombre, String apellido, String email, String fechaNacimiento, String userName, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
         this.userName = userName;
         this.password = password;
-        this.estaLogueado = estaLogueado;
-        this.isAdmin = isAdmin;
-        this.idUsuario = ++Usuario.id;
+        this.estaLogueado = false;
+        this.admin = false;
+        this.id = ++Usuario.contadorId;
     }
 
-    public Usuario(String nombre, String apellido, String email, String userName, String password, String fechaNacimiento) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.userName = userName;
-        this.password = password;
-        this.fechaNacimiento = fechaNacimiento;
-
-    }
-
-    public Usuario(String userName, String password){
-        this.userName = userName;
-        this.password = password;
-    }
 
     //endregion
 
     //region Getters y Setters
 
     public int getIdUsuario() {
-        return idUsuario;
+        return id;
     }
 
     public String getNombre() {
@@ -110,11 +98,11 @@ public  abstract class Usuario {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setAdmin(boolean isAdmin) {
+        this.admin = isAdmin;
     }
 
     //endregion
@@ -124,7 +112,7 @@ public  abstract class Usuario {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Datos del Usuario con id: ");
-        sb.append(idUsuario).append('\'');
+        sb.append(id).append('\'');
         sb.append("Nombre = '").append(nombre).append('\'');
         sb.append(", Apellido = '").append(apellido).append('\'');
         sb.append(", email = '").append(email).append('\'');
@@ -132,13 +120,26 @@ public  abstract class Usuario {
         sb.append(", userName = '").append(userName).append('\'');
         sb.append(", password = '").append(password).append('\'');
         sb.append(", estaLogueado = '").append(estaLogueado).append('\'');
-        sb.append(", isAdmin = '").append(isAdmin).append('\'');
+        sb.append(", isAdmin = '").append(admin).append('\'');
 
         return sb.toString();
     }
 
     //endregion
 
+    // region Equals & HashCode
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return id == usuario.id && Objects.equals(email, usuario.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, id);
+    }
 }

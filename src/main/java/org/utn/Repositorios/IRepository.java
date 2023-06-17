@@ -5,7 +5,6 @@ import java.util.List;
 
 public interface IRepository<T> {
 
-
     List<T> listar();
     // Acciones
 
@@ -16,6 +15,8 @@ public interface IRepository<T> {
 
     void cargar();
     void guardar();
+    // analizar que conviene? Pasar el id o el objeto
+
 
 
 }
