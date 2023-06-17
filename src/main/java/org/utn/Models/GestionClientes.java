@@ -145,7 +145,7 @@ public class GestionClientes {
 
     // mostrar un cliente por id
     public void mostrarClientePorId(int id) {
-        clienteRepo.verUno(id);
+
     }
 
 // listar clientes

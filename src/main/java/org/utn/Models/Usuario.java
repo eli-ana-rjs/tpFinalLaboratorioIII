@@ -11,7 +11,7 @@ public  abstract class Usuario {
     protected String userName;
     protected String password;
     protected boolean estaLogueado;
-    protected boolean isAdmin;
+    protected boolean admin;
     private static int contadorId = 0 ;
     protected transient int id;
 
@@ -28,15 +28,10 @@ public  abstract class Usuario {
         this.userName = userName;
         this.password = password;
         this.estaLogueado = false;
-        this.isAdmin = false;
+        this.admin = false;
         this.id = ++Usuario.contadorId;
     }
 
-
-    public Usuario(String userName, String password){
-        this.userName = userName;
-        this.password = password;
-    }
 
     //endregion
 
@@ -103,11 +98,11 @@ public  abstract class Usuario {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+        this.admin = isAdmin;
     }
 
     //endregion
@@ -125,7 +120,7 @@ public  abstract class Usuario {
         sb.append(", userName = '").append(userName).append('\'');
         sb.append(", password = '").append(password).append('\'');
         sb.append(", estaLogueado = '").append(estaLogueado).append('\'');
-        sb.append(", isAdmin = '").append(isAdmin).append('\'');
+        sb.append(", isAdmin = '").append(admin).append('\'');
 
         return sb.toString();
     }

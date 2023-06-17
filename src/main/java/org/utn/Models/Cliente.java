@@ -1,19 +1,16 @@
 package org.utn.Models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Cliente extends Usuario implements Serializable {
 
     //region Properties
     public Genero genero;
     protected String domicilio;
-    protected boolean isPremium ;
+    protected boolean premium ;
     protected TipoDePlan tipoDePlan;
 
-    protected boolean estaLogueado;
-    protected Biblioteca biblioteca; // arreglo de ids de playlists
+    //protected Biblioteca biblioteca; // arreglo de ids de playlists
 
     //endregion
 
@@ -28,18 +25,12 @@ public class Cliente extends Usuario implements Serializable {
     public Cliente() {
     }
 
-    /*
-    public Cliente(String nombre, String apellido, String email, String userName, String password, String fechaNacimiento) {
-        super(nombre, apellido, email, userName, password, fechaNacimiento);
-    }*/
 
-
-
-    public Cliente(String nombre, String apellido, String email, String fechaNacimiento, String userName, String password, Genero genero, String domicilio, boolean isPremium, TipoDePlan tipoDePlan) {
+    public Cliente(String nombre, String apellido, String email, String fechaNacimiento, String userName, String password, Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan) {
         super(nombre, apellido, email, fechaNacimiento, userName, password);
         this.genero = genero;
         this.domicilio = domicilio;
-        this.isPremium = isPremium;
+        this.premium = premium;
         this.tipoDePlan = tipoDePlan;
 
     }
@@ -105,11 +96,11 @@ public class Cliente extends Usuario implements Serializable {
     }
 
     public boolean isPremium() {
-        return isPremium;
+        return premium;
     }
 
-    public void setPremium(boolean isPremium) {
-        this.isPremium = isPremium;
+    public void setPremium(boolean premium) {
+        this.premium = premium;
     }
 
     public TipoDePlan getTipoDePlan() {
@@ -120,15 +111,6 @@ public class Cliente extends Usuario implements Serializable {
         this.tipoDePlan = tipoDePlan;
     }
 
-    @Override
-    public boolean isEstaLogueado() {
-        return estaLogueado;
-    }
-
-    @Override
-    public void setEstaLogueado(boolean estaLogueado) {
-        this.estaLogueado = estaLogueado;
-    }
 
     //endregion
 
@@ -148,10 +130,10 @@ public class Cliente extends Usuario implements Serializable {
         sb.append(", userName='").append(userName).append('\'');
         sb.append(", password='").append(password).append('\'');
 
-        sb.append(", isPremium=").append(isPremium);
+        sb.append(", isPremium=").append(premium);
         sb.append(", tipoDePlan=").append(tipoDePlan);
         sb.append(", estaLogueado=").append(estaLogueado);
-        sb.append(", isAdmin=").append(isAdmin);
+        sb.append(", isAdmin=").append(admin);
 
         //sb.append(", biblioteca=").append(biblioteca);
        // sb.append(", misCanciones=").append(misCanciones);

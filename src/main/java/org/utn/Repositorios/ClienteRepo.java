@@ -40,14 +40,6 @@ public class ClienteRepo implements IRepository<Cliente> {
     }
 
     @Override
-    public boolean buscar(Cliente objeto) {
-        return false;
-    }
-
-
-
-
-    @Override
     public void agregar(Cliente... obj) {
 
         cargar();
@@ -56,6 +48,11 @@ public class ClienteRepo implements IRepository<Cliente> {
 
     }
 
+    @Override
+    public boolean buscar(Cliente objeto) {
+        // completar
+        return false;
+    }
 
     @Override
     public void modificar(Cliente cliente) {
@@ -79,9 +76,6 @@ public class ClienteRepo implements IRepository<Cliente> {
     }
 
 
-
-//endregion
-
     public void eliminar(Cliente cliente) {
         cargar();
         for (Cliente c : this.listaClientes) {
@@ -100,7 +94,5 @@ public class ClienteRepo implements IRepository<Cliente> {
         cargar();
         return this.listaClientes;
     }
-
-
 
 }
