@@ -6,29 +6,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GestionClientes {
-
-    // region PROPIEDADES
-
-    //private Cliente cliente = new Cliente();
-
-    private ClienteRepo clienteRepo;
-
-    //endregion
-    //region constructores
-
-    public GestionClientes() {
-        this.clienteRepo = new ClienteRepo();
-    }
-
-
-    //endregion
+    private ClienteRepo clienteRepo = new ClienteRepo();
 
     //region metodos
 
     // pedir datos de un cliente
     public Cliente pedirDatosCliente() {
-
-
         Scanner scanner = new Scanner(System.in);
         Cliente cliente = new Cliente();
         TipoDePlan tipoPlan;
@@ -82,7 +65,6 @@ public class GestionClientes {
 
 
         try {
-
             if (cliente.isPremium()) {
 
                 System.out.println("Tipo de Plan ---> 1.INDIVIDUAL, 2.DUO, 3. FAMILIAR : ");
@@ -125,8 +107,9 @@ public class GestionClientes {
     }
 
     // AGREGAR CLIENTE AL JSON
-    public void agregarCliente(Cliente cliente) {
 
+    //agregar cliente
+    public void agregarCliente(Cliente cliente) {
         List<Cliente> listaClientes = clienteRepo.listar();
         try {
             for (Cliente c : listaClientes) {
@@ -134,7 +117,6 @@ public class GestionClientes {
                     throw new IllegalArgumentException("El id del cliente ya existe");
                 }
             }
-           // cliente = pedirDatosCliente();
             listaClientes.add(cliente);
             System.out.println("Cliente agregado exitosamente");
         } catch (IllegalArgumentException e) {
@@ -158,6 +140,40 @@ public class GestionClientes {
         List<Cliente> listaClientes = clienteRepo.listar();
         for (Cliente cliente : listaClientes) {
             System.out.println(cliente);
+        }
+    }
+
+    public void eliminarCliente(Cliente cliente) {
+        try{
+            if (cliente.getIdUsuario() == 0){
+                throw new IllegalArgumentException("El id del cliente no puede ser cero 0");
+            }
+            else{
+                clienteRepo.eliminar(cliente);
+                System.out.println("Cliente"+ cliente.getNombre()+"eliminado exitosamente");
+            }
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void modificarCliente(Cliente cliente) {
+        try{
+            if (cliente.getIdUsuario() == 0){
+                throw new IllegalArgumentException("El id del cliente no puede ser cero 0");
+            }
+            else{
+                clienteRepo.modificar(cliente);
+                System.out.println("Cliente"+ cliente.getNombre()+"modificado exitosamente");
+            }
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
         }
     }
 

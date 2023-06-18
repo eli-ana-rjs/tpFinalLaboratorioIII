@@ -6,9 +6,9 @@ public class Cliente extends Usuario implements Serializable {
 
     //region Properties
     public Genero genero;
-    protected String domicilio;
-    protected boolean premium ;
-    protected TipoDePlan tipoDePlan;
+    private String domicilio;
+    private boolean premium ;
+    private TipoDePlan tipoDePlan;
 
     //protected Biblioteca biblioteca; // arreglo de ids de playlists
 
@@ -26,7 +26,9 @@ public class Cliente extends Usuario implements Serializable {
     }
 
 
-    public Cliente(String nombre, String apellido, String email, String fechaNacimiento, String userName, String password, Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan) {
+    public Cliente(String nombre, String apellido, String email,
+                   String fechaNacimiento, String userName, String password,
+                   Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan) {
         super(nombre, apellido, email, fechaNacimiento, userName, password);
         this.genero = genero;
         this.domicilio = domicilio;
