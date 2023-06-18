@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ClienteRepo implements IRepository<Cliente> {
 
-    private final File archivo = new File("C:\\Users\\matias.siano_nybbleg\\IdeaProjects\\tpFinalLaboratorioIII\\src\\main\\java\\org\\utn\\Archivos\\clientes.json");
+    private final File archivo = new File("src/main/java/org/utn/Archivos/clientes.json");
     private final ObjectMapper mapper = new ObjectMapper();
     private List<Cliente> listaClientes;
 
@@ -24,6 +24,8 @@ public class ClienteRepo implements IRepository<Cliente> {
             CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(List.class, Cliente.class);
             this.listaClientes = mapper.readValue(archivo, collectionType);
         } catch (Exception e) {
+            System.out.println("Entre al catch de cargar()");
+            System.out.println("e = " + e);
             this.listaClientes = new ArrayList<>();
         }
     }
@@ -59,7 +61,7 @@ public class ClienteRepo implements IRepository<Cliente> {
         cargar();
 
         for (Cliente c : this.listaClientes) {
-            if(c.getIdUsuario() == cliente.getIdUsuario()){
+            if(c.getId() == cliente.getId()){
                 c.setGenero(cliente.getGenero());
                 c.setDomicilio(cliente.getDomicilio());
                 c.setPremium(cliente.isPremium());
@@ -88,7 +90,7 @@ public class ClienteRepo implements IRepository<Cliente> {
         cargar();
         for (Cliente c : this.listaClientes) {
 
-            if (c.getIdUsuario() == cliente.getIdUsuario()) {
+            if (c.getId() == cliente.getId()) {
                 this.listaClientes.remove(c);
                 break;
             }

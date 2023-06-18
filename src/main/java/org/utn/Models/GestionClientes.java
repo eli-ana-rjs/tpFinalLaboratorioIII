@@ -113,7 +113,7 @@ public class GestionClientes {
         List<Cliente> listaClientes = clienteRepo.listar();
         try {
             for (Cliente c : listaClientes) {
-                if (c.getIdUsuario() == cliente.getIdUsuario()) {
+                if (c.getId() == cliente.getId()) {
                     throw new IllegalArgumentException("El id del cliente ya existe");
                 }
             }
@@ -145,7 +145,7 @@ public class GestionClientes {
 
     public void eliminarCliente(Cliente cliente) {
         try{
-            if (cliente.getIdUsuario() == 0){
+            if (cliente.getId() == 0){
                 throw new IllegalArgumentException("El id del cliente no puede ser cero 0");
             }
             else{
@@ -162,7 +162,7 @@ public class GestionClientes {
 
     public void modificarCliente(Cliente cliente) {
         try{
-            if (cliente.getIdUsuario() == 0){
+            if (cliente.getId() == 0){
                 throw new IllegalArgumentException("El id del cliente no puede ser cero 0");
             }
             else{

@@ -13,7 +13,7 @@ public  abstract class Usuario {
     protected boolean estaLogueado;
     protected boolean admin;
     private static int contadorId = 0 ;
-    protected transient int id;
+    protected int id;
 
 
     //region Constructores
@@ -37,7 +37,8 @@ public  abstract class Usuario {
 
     //region Getters y Setters
 
-    public int getIdUsuario() {
+
+    public int getId() {
         return id;
     }
 
