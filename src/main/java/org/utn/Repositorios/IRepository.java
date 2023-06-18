@@ -1,8 +1,6 @@
 package org.utn.Repositorios;
 import java.util.List;
 
-import java.util.List;
-
 public interface IRepository<T> {
 
     List<T> listar();

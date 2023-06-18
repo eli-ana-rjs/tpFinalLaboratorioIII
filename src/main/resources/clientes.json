@@ -1,1 +1,15 @@
-[ ]
+[ {
+  "nombre" : "Laura",
+  "apellido" : "Fernández",
+  "email" : "laura.fernandez@example.com",
+  "fechaNacimiento" : "1995-07-20",
+  "userName" : "laurafer",
+  "password" : "mipass1234",
+  "estaLogueado" : false,
+  "admin" : false,
+  "genero" : "OTRO",
+  "domicilio" : "Calle Principal, 456",
+  "premium" : true,
+  "tipoDePlan" : "INDIVIDUAL",
+  "idUsuario" : 5
+} ]

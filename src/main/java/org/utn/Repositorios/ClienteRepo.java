@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ClienteRepo implements IRepository<Cliente> {
 
-    private final File archivo = new File("src/main/resources/clientes.json");
+    private final File archivo = new File("C:\\Users\\matias.siano_nybbleg\\IdeaProjects\\tpFinalLaboratorioIII\\src\\main\\java\\org\\utn\\Archivos\\clientes.json");
     private final ObjectMapper mapper = new ObjectMapper();
     private List<Cliente> listaClientes;
 
@@ -23,7 +23,7 @@ public class ClienteRepo implements IRepository<Cliente> {
         try {
             CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(List.class, Cliente.class);
             this.listaClientes = mapper.readValue(archivo, collectionType);
-        } catch (IOException e) {
+        } catch (Exception e) {
             this.listaClientes = new ArrayList<>();
         }
     }
@@ -43,7 +43,7 @@ public class ClienteRepo implements IRepository<Cliente> {
     public void agregar(Cliente... obj) {
 
         cargar();
-        this.listaClientes.addAll(List.of(obj));
+        listaClientes.addAll(List.of(obj));
         guardar();
 
     }
@@ -62,7 +62,15 @@ public class ClienteRepo implements IRepository<Cliente> {
             if(c.getIdUsuario() == cliente.getIdUsuario()){
                 c.setGenero(cliente.getGenero());
                 c.setDomicilio(cliente.getDomicilio());
-                // agregar el resto
+                c.setPremium(cliente.isPremium());
+                c.setTipoDePlan(cliente.getTipoDePlan());
+                c.setApellido(cliente.getApellido());
+                c.setNombre(cliente.getNombre());
+                c.setEmail(cliente.getEmail());
+                c.setFechaNacimiento(cliente.getFechaNacimiento());
+                c.setUserName(cliente.getUserName());
+                c.setPassword(cliente.getPassword());
+
                 System.out.println("Usuario modificado exitosamente");
                 break;
             } else {
@@ -90,7 +98,6 @@ public class ClienteRepo implements IRepository<Cliente> {
 
     @Override
     public List<Cliente> listar() {
-
         cargar();
         return this.listaClientes;
     }
