@@ -127,6 +127,16 @@ public class GestionClientes {
 
     // mostrar un cliente por id
     public void mostrarClientePorId(int id) {
+        List<Cliente> listaClientes = clienteRepo.listar();
+        try {
+            for (Cliente c : listaClientes) {
+                if (c.getId() == id) {
+                    System.out.println(c);
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -149,7 +159,8 @@ public class GestionClientes {
                 throw new IllegalArgumentException("El id del cliente no puede ser cero 0");
             }
             else{
-                clienteRepo.eliminar(cliente);
+                cliente.setActivo(false);
+                //clienteRepo.eliminar(cliente);
                 System.out.println("Cliente"+ cliente.getNombre()+"eliminado exitosamente");
             }
         }
@@ -175,6 +186,47 @@ public class GestionClientes {
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void listarClientesPremium() {
+        List<Cliente> listaClientes = clienteRepo.listar();
+        for (Cliente cliente : listaClientes) {
+            if (cliente.isPremium()) {
+                System.out.println(cliente);
+            }
+        }
+    }
+    public void listarClientesFree() {
+        List<Cliente> listaClientes = clienteRepo.listar();
+        for (Cliente cliente : listaClientes) {
+            if (!cliente.isPremium()) {
+                System.out.println(cliente);
+            }
+        }
+    }
+
+    public void listarAdministradores() {
+        List<Cliente> listaClientes = clienteRepo.listar();
+        for (Cliente cliente : listaClientes) {
+            if (cliente.isAdmin()) {
+                System.out.println(cliente);
+            }
+        }
+    }
+
+    public boolean cambiarAdministrador(){
+        boolean admin = false;
+        System.out.println("Ingrese el id del cliente que desea cambiar su rol a administrador");
+        Scanner scanner = new Scanner(System.in);
+        int id = scanner.nextInt();
+        List<Cliente> listaClientes = clienteRepo.listar();
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getId() == id) {
+                cliente.setAdmin(true);
+                admin = true;
+            }
+        }
+        return admin;
     }
 
 

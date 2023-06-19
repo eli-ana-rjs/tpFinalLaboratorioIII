@@ -52,7 +52,12 @@ public class ClienteRepo implements IRepository<Cliente> {
 
     @Override
     public boolean buscar(Cliente objeto) {
-        // completar
+        cargar();
+        for (Cliente c : this.listaClientes) {
+            if (c.getId() == objeto.getId()) {
+                return true;
+            }
+        }
         return false;
     }
 
