@@ -32,14 +32,6 @@ public class GestionClientes {
         String email = scanner.nextLine();
         cliente.setEmail(email);
 
-        System.out.print("Fecha de Nacimiento (dd-MM-yyyy): ");
-        String fechaNacimiento = scanner.nextLine();
-        cliente.setFechaNacimiento(fechaNacimiento);
-
-        System.out.print("Nombre de Usuario: ");
-        String nombreUsuario = scanner.nextLine();
-        cliente.setUserName(nombreUsuario);
-
         System.out.print("Contraseña: ");
         String password = scanner.nextLine();
         cliente.setPassword(password);
@@ -187,6 +179,30 @@ public class GestionClientes {
             System.out.println(e.getMessage());
         }
     }
+
+    public int idUltimoCliente(){
+        List<Cliente> listaClientes = clienteRepo.listar();
+
+        if (listaClientes.isEmpty()) {
+            return 0;
+        }
+
+        Cliente ultimo = listaClientes.get(listaClientes.size() -1 );
+        return ultimo.getId();
+    }
+
+    // aca aparece un error pero es porque en la clase GestionPlaylistPrivada todavia no hicieron eel metodo existe de cancion
+    public Cliente existeCliente(String email){
+        List<Cliente> listaClientes = clienteRepo.listar();
+        for (Cliente cliente : listaClientes) {
+            if(cliente.email.equals(email)){
+                return cliente;
+            }
+        }
+        throw new RuntimeException("El email ingresado no existe ");
+
+    }
+
 
     public void listarClientesPremium() {
         List<Cliente> listaClientes = clienteRepo.listar();

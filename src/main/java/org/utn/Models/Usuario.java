@@ -7,10 +7,7 @@ public  abstract class Usuario {
     protected String nombre;
     protected String apellido;
     protected String email;
-    protected String fechaNacimiento;
-    protected String userName;
     protected String password;
-    protected boolean estaLogueado;
     protected boolean admin;
     private static int contadorId = 0 ;
     protected int id;
@@ -19,20 +16,27 @@ public  abstract class Usuario {
 
     //region Constructores
     public Usuario() {
+        this.id = ++Usuario.contadorId;
     }
 
-    public Usuario(String nombre, String apellido, String email, String fechaNacimiento, String userName, String password) {
+    public Usuario(String nombre, String apellido, String email,String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.fechaNacimiento = fechaNacimiento;
-        this.userName = userName;
         this.password = password;
-        this.estaLogueado = false;
         this.admin = false;
         this.id = ++Usuario.contadorId;
     }
 
+    // constructor para leer un cliente del json con un id que ya esxiste
+    public Usuario(String nombre, String apellido, String email, String fechaNacimiento, String userName, String password, int id) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.password = password;
+        this.admin = false;
+        this.id = id;
+    }
 
     //endregion
 
@@ -41,6 +45,10 @@ public  abstract class Usuario {
 
     public int getId() {
         return id;
+    }
+
+    public static void setContadorId(int id){
+        contadorId = id;
     }
 
     public String getNombre() {
@@ -67,36 +75,12 @@ public  abstract class Usuario {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public boolean isEstaLogueado() {
-        return estaLogueado;
-    }
-
-    public void setEstaLogueado(boolean estaLogueado) {
-        this.estaLogueado = estaLogueado;
     }
 
     public boolean isAdmin() {
@@ -126,10 +110,7 @@ public  abstract class Usuario {
         sb.append("Nombre = '").append(nombre).append('\'');
         sb.append(", Apellido = '").append(apellido).append('\'');
         sb.append(", email = '").append(email).append('\'');
-        sb.append(", Fecha de Nacimiento = '").append(fechaNacimiento).append('\'');
-        sb.append(", userName = '").append(userName).append('\'');
         sb.append(", password = '").append(password).append('\'');
-        sb.append(", estaLogueado = '").append(estaLogueado).append('\'');
         sb.append(", isAdmin = '").append(admin).append('\'');
 
         return sb.toString();
