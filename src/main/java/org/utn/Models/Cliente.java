@@ -9,6 +9,7 @@ public class Cliente extends Usuario implements Serializable {
     private String domicilio;
     private boolean premium ;
     private TipoDePlan tipoDePlan;
+    private String fechaNacimiento;
 
     //protected Biblioteca biblioteca; // arreglo de ids de playlists
 
@@ -27,70 +28,21 @@ public class Cliente extends Usuario implements Serializable {
     }
 
 
-    public Cliente(String nombre, String apellido, String email, String password,
-                   Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan) {
-        super(nombre, apellido, email, password);
+    public Cliente(String nombre, String apellido, String email, String password, int id,
+                   Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan, String fechaNacimiento) {
+        super(nombre, apellido, email, password, id);
         this.genero = genero;
         this.domicilio = domicilio;
         this.premium = premium;
         this.tipoDePlan = tipoDePlan;
-
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Cliente(String nombre, String apellido, String email,
-                   String fechaNacimiento, String userName, String password,
-                   Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan, int id) {
-        super(nombre, apellido, email, fechaNacimiento, userName, password,id);
-        this.genero = genero;
-        this.domicilio = domicilio;
-        this.premium = premium;
-        this.tipoDePlan = tipoDePlan;
-
-    }
 
     //endregion
 
 //region Getters y Setters
 
-    /*
-    public ArrayList<Cancion> getMisCanciones() {
-        return misCanciones;
-
-    }
-
-    public void setPremium(boolean premium) {
-        isPremium = premium;
-    }
-
-    public TipoDePlan getTipoDePlan() {
-        return tipoDePlan;
-    }
-
-    public void setTipoDePlan(TipoDePlan tipoDePlan) {
-        this.tipoDePlan = tipoDePlan;
-    }
-
-    public boolean isEstaLogueado() {
-        return estaLogueado;
-    }
-
-    public void setEstaLogueado(boolean estaLogueado) {
-        this.estaLogueado = estaLogueado;
-    }
-
-    public Biblioteca getBiblioteca() {
-        return biblioteca;
-    }
-
-    public void setBiblioteca(Biblioteca biblioteca) {
-        this.biblioteca = biblioteca;
-    }
-
-
-//endregion
-
-
-    */
     public Genero getGenero() {
         return genero;
     }
@@ -123,6 +75,13 @@ public class Cliente extends Usuario implements Serializable {
         this.tipoDePlan = tipoDePlan;
     }
 
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 
     //endregion
 
@@ -130,7 +89,7 @@ public class Cliente extends Usuario implements Serializable {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Cliente{");
-        sb.append(", idUsuario=").append(id);
+        sb.append(", Id Cliente=").append(id);
 
         sb.append(", nombre='").append(nombre).append('\'');
         sb.append(", apellido='").append(apellido).append('\'');
