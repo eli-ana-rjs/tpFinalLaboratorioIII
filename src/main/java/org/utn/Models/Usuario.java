@@ -14,6 +14,7 @@ public  abstract class Usuario {
     protected boolean admin;
     private static int contadorId = 0 ;
     protected int id;
+    protected boolean activo = true;
 
 
     //region Constructores
@@ -104,6 +105,14 @@ public  abstract class Usuario {
 
     public void setAdmin(boolean isAdmin) {
         this.admin = isAdmin;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     //endregion
