@@ -23,13 +23,13 @@ public class Cliente extends Usuario implements Serializable {
 
     //region Constructor
     public Cliente() {
+        super();
     }
 
 
-    public Cliente(String nombre, String apellido, String email,
-                   String fechaNacimiento, String userName, String password,
+    public Cliente(String nombre, String apellido, String email, String password,
                    Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan) {
-        super(nombre, apellido, email, fechaNacimiento, userName, password);
+        super(nombre, apellido, email, password);
         this.genero = genero;
         this.domicilio = domicilio;
         this.premium = premium;
@@ -37,6 +37,16 @@ public class Cliente extends Usuario implements Serializable {
 
     }
 
+    public Cliente(String nombre, String apellido, String email,
+                   String fechaNacimiento, String userName, String password,
+                   Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan, int id) {
+        super(nombre, apellido, email, fechaNacimiento, userName, password,id);
+        this.genero = genero;
+        this.domicilio = domicilio;
+        this.premium = premium;
+        this.tipoDePlan = tipoDePlan;
+
+    }
 
     //endregion
 
@@ -125,16 +135,15 @@ public class Cliente extends Usuario implements Serializable {
         sb.append(", nombre='").append(nombre).append('\'');
         sb.append(", apellido='").append(apellido).append('\'');
         sb.append(", email='").append(email).append('\'');
-        sb.append(", fechaNacimiento='").append(fechaNacimiento).append('\'');
         sb.append("genero=").append(genero);
         sb.append(", domicilio='").append(domicilio).append('\'');
 
-        sb.append(", userName='").append(userName).append('\'');
+
         sb.append(", password='").append(password).append('\'');
 
         sb.append(", isPremium=").append(premium);
         sb.append(", tipoDePlan=").append(tipoDePlan);
-        sb.append(", estaLogueado=").append(estaLogueado);
+
         sb.append(", isAdmin=").append(admin);
 
         //sb.append(", biblioteca=").append(biblioteca);

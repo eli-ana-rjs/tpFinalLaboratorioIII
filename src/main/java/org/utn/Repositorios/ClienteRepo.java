@@ -1,9 +1,9 @@
 package org.utn.Repositorios;
 
-import org.utn.Models.Cliente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
-import org.utn.Models.Cancion;
+import org.utn.Models.Cliente;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -74,8 +74,6 @@ public class ClienteRepo implements IRepository<Cliente> {
                 c.setApellido(cliente.getApellido());
                 c.setNombre(cliente.getNombre());
                 c.setEmail(cliente.getEmail());
-                c.setFechaNacimiento(cliente.getFechaNacimiento());
-                c.setUserName(cliente.getUserName());
                 c.setPassword(cliente.getPassword());
 
                 System.out.println("Usuario modificado exitosamente");

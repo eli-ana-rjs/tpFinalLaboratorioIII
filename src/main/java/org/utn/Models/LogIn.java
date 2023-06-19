@@ -1,34 +1,47 @@
 package org.utn.Models;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
-import java.io.File;
+
 import java.io.Serializable;
-import java.util.List;
-import java.util.Scanner;
 
-public class LogIn implements Serializable {
+public class Login implements Serializable {
 
-    //Base para el registro de los usuarios
-    public void logIn (){
-        Scanner scan = new Scanner(System.in);
-        Usuario persona = new Cliente();
+    static Cliente logueado = null;
 
-        System.out.println("Log In");
-        System.out.println("Ingrese su nombre");
-        persona.nombre = scan.next();
-        System.out.println("Ingrese su Apellido");
-        persona.apellido = scan.next();
-        System.out.println("Ingrese su Email");
-        persona.apellido = scan.next();
-        System.out.println("Ingrese su fecha de nacimiento");
-        persona.apellido = scan.next();
-        System.out.println("Ingrese su Username"); //comprobacion con archivo json
-        persona.apellido = scan.next();
-        System.out.println("Ingrese su Password"); //requisitos minimos
-        persona.apellido = scan.next(); //ocultarla
-        // 3 intentos
-        //Escribir persona en archivo json
+    private int intentosRestantes;
 
+    GestionClientes gestionClientes = new GestionClientes();
+
+
+    public Login() {
+        this.intentosRestantes = 3;
+    }
+
+    public boolean tieneIntentosRestantes() {
+        return this.intentosRestantes > 0;
+    }
+
+    public void setIntentosRestantes(int intentosRestantes) {
+        this.intentosRestantes = intentosRestantes;
+    }
+
+    public boolean iniciarSesion(String email, String password) {
+
+        Cliente cliente = gestionClientes.existeCliente(email);
+
+        if (cliente.getPassword().equals(password)) {
+
+            logueado = cliente;
+            return true;
+        }
+        this.intentosRestantes--;
+        return false;
+    }
+
+    public static boolean estaLogueado(){
+        return logueado != null;
+    }
+
+    public static boolean esAdministrador(){
+        return logueado.isAdmin();
     }
 
 }
