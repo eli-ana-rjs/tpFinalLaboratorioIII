@@ -1,34 +1,72 @@
 package org.utn.Models;
-
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * @author Milagros Pecar
+ * @version 1.0
+ */
 public class Cancion implements Serializable {
 
+    /**
+     * Constante PI
+     */
     private String nombre;
+    /**
+     * Constante PI
+     */
     private String artista;
+    /**
+     * Constante PI
+     */
     private String album;
+    /**
+     * Constante PI
+     */
     private String duracion;
+    /**
+     * Constante PI
+     */
     private String comentarios;
+    /**
+     * Constante PI
+     */
     private GeneroCancion genero;
-    private static int id; // Como los atributos static no se persisten nunca va a aumentar el num de id. Agregar incremental metodo
+    /**
+     * Constante PI
+     */
     private int idCancion;
+
 
     //region Constructores
 
+    /**
+     * Constructor vacio de la clase Cancion
+     */
     public Cancion() {
     }
 
-    public Cancion(String nombre, String artista, String album, String duracion, String comentarios) {
+    /**
+     * Constructor de la clase Cancion
+     * @param nombre nombre de la cancion
+     * @param artista artista a quien pertenece la cancion
+     * @param album album al cual pertenece una cancion
+     * @param duracion duracion de la cancion
+     * @param comentarios comentarios sobre la cancion
+     * @param genero genero de la cancion
+     */
+    public Cancion(String nombre, String artista, String album, String duracion, String comentarios, GeneroCancion genero) {
         this.nombre = nombre;
         this.artista = artista;
         this.album = album;
         this.duracion = duracion;
         this.comentarios = comentarios;
-        this.idCancion = ++Cancion.id;
+        this.genero = genero;
+
     }
 
-    //endregion
+//endregion
+
 
     //region Getters y Setters
 
@@ -80,20 +118,26 @@ public class Cancion implements Serializable {
         this.idCancion = idCancion;
     }
 
+    public GeneroCancion getGenero() {
+        return genero;
+    }
+
+    public void setGenero(GeneroCancion genero) {
+        this.genero = genero;
+    }
 
     //endregion
 
     //region OVerrides
 
-
     @Override
     public String toString() {
-        return "Cancion <<" +
-                "Nombre: " + nombre + '\'' +
-                ", Artista: " + artista + '\'' +
-                ", Album='" + album + '\'' +
-                ", Duracion: " + duracion + '\'' +
-                ", Comentarios: " + comentarios + '\'' +
+        return "<< " +
+                "Nombre: " + nombre  +
+                ", Artista: " + artista  +
+                ", Album: " + album +
+                ", Duracion: " + duracion  +
+                ", Comentarios: " + comentarios  +
                 ", Genero: " + genero +
                 ", IdCancion: " + idCancion +
                 " >>";
@@ -111,7 +155,6 @@ public class Cancion implements Serializable {
     public int hashCode() {
         return Objects.hash(nombre, artista, album, duracion, comentarios, genero, idCancion);
     }
-
 
     //endregion
 }
