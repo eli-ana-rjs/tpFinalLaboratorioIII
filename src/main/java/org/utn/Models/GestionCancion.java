@@ -1,9 +1,7 @@
 package org.utn.Models;
 import org.utn.Repositorios.CancionRepo;
-import java.util.List;
-import java.util.MissingFormatArgumentException;
-import java.util.Scanner;
-import java.util.InputMismatchException;
+
+import java.util.*;
 
 /**
  * @author Milagros Pecar
@@ -360,6 +358,33 @@ public class GestionCancion {
     public int buscarUltimoID(){
 
         return repo.buscarUltimoID();
+    }
+    /**Busca por id una cancion y retorna la Cancion
+     *
+     */
+    public Cancion existe(int id){
+        List<Cancion> listaCanciones = repo.listar();
+        for (Cancion cancion : listaCanciones){
+            if (cancion.getIdCancion() == id){
+                return cancion;
+            }
+        }
+        return null;
+    }
+
+    /**Busca por id una cancion y la retorna si existe. Recibe una lista de canciones por parametro
+     *
+     * @param id
+     * @param listaCancionesUser
+     * @return
+     */
+    public Cancion existeEnPlaylist (int id, List<Cancion> listaCancionesUser){
+        for (Cancion cancion : listaCancionesUser){
+            if (cancion.getIdCancion() == id){
+                return cancion;
+            }
+        }
+        return null;
     }
 
     /**

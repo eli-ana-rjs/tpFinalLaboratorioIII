@@ -16,7 +16,7 @@ public class CancionRepo implements IRepository<Cancion> {
     /**
      * Constante PI
      */
-    public final File archivoCanciones = new File("C:\\Users\\Milagros\\Desktop\\tpFinalLaboratorioIII copia\\src\\main\\java\\org\\utn\\Archivos\\canciones.json");
+    public final File archivoCanciones = new File("src\\main\\java\\org\\utn\\Archivos\\canciones.json");
     /**
      * Constante PI
      */

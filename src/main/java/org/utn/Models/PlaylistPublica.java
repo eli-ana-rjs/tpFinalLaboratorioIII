@@ -12,10 +12,6 @@ public class PlaylistPublica extends Playlist implements Serializable {
     public PlaylistPublica() {
     }
 
-    public PlaylistPublica(String nombre, List<Cancion> listaCanciones, List<Integer> idClientes) {
-        super(nombre, listaCanciones);
-        this.idClientes = idClientes;
-    }
 
     //endregion
 
