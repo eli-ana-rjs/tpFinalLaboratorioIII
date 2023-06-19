@@ -11,7 +11,7 @@ public  abstract class Usuario {
     protected boolean admin;
     private static int contadorId = 0 ;
     protected int id;
-    protected boolean activo = true;
+    protected boolean usuarioActivo = true;
 
 
     //region Constructores
@@ -28,8 +28,8 @@ public  abstract class Usuario {
         this.id = ++Usuario.contadorId;
     }
 
-    // constructor para leer un cliente del json con un id que ya esxiste
-    public Usuario(String nombre, String apellido, String email, String fechaNacimiento, String userName, String password, int id) {
+    // constructor para leer un cliente del json con un id que ya existe
+    public Usuario(String nombre, String apellido, String email, String password, int id) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -41,15 +41,6 @@ public  abstract class Usuario {
     //endregion
 
     //region Getters y Setters
-
-
-    public int getId() {
-        return id;
-    }
-
-    public static void setContadorId(int id){
-        contadorId = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -87,16 +78,32 @@ public  abstract class Usuario {
         return admin;
     }
 
-    public void setAdmin(boolean isAdmin) {
-        this.admin = isAdmin;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public static int getContadorId() {
+        return contadorId;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public static void setContadorId(int contadorId) {
+        Usuario.contadorId = contadorId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isUsuarioActivo() {
+        return usuarioActivo;
+    }
+
+    public void setUsuarioActivo(boolean usuarioActivo) {
+        this.usuarioActivo = usuarioActivo;
     }
 
     //endregion
