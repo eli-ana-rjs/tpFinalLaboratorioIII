@@ -8,7 +8,7 @@ public class Main {
 
         Cliente.setContadorId(cantidadClientes);
 
-        // FormLogin.dibujarMenu();
+        FormLogin.dibujarMenu();
 
         /*
         Cliente cliente1 = new Cliente("Ana", "Gómez", "ana.gomez@example.com", "secreta123", Genero.FEMENINO, "Calle Principal, 123", true, TipoDePlan.INDIVIDUAL);

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Login implements Serializable {
 
     static Cliente logueado = null;
+    static int idLogueado = logueado.getId();
 
     private int intentosRestantes;
 
@@ -30,6 +31,7 @@ public class Login implements Serializable {
         if (cliente.getPassword().equals(password)) {
 
             logueado = cliente;
+            logueado.getId();
             return true;
         }
         this.intentosRestantes--;

@@ -1,6 +1,8 @@
 package org.utn.Menu;
 
+import org.utn.Models.Biblioteca;
 import org.utn.Models.Cliente;
+import org.utn.Models.Login;
 import org.utn.Utilidades.Color;
 
 import java.util.Scanner;
@@ -56,6 +58,8 @@ public class MenuCliente {
     }
 
     public void iniciarMenuClientePremium() {
+        Biblioteca biblioteca = new Biblioteca();
+        Login.estaLogueado();
 
         Scanner scanner = new Scanner(System.in);
         int opcion = 0;
@@ -66,6 +70,9 @@ public class MenuCliente {
 
             switch (opcion) {
                 case 1:
+                    System.out.println("Ver mis playlist");
+                    // tomar el id del cliente logueado
+                    //biblioteca.mostrarBibliotecaCliente();
 
 
                     break;
