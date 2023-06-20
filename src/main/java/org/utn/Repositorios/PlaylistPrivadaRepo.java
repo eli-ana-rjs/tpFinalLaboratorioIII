@@ -10,14 +10,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaylistPrivadaRepo implements IRepository<Playlist> {
+public class PlaylistPrivadaRepo implements IRepository<PlaylistPrivada> {
 
     public final File archivoPlaylistPrivada= new File("src\\main\\java\\org\\utn\\Archivos\\playlistPrivada.json");
     public final ObjectMapper mapper = new ObjectMapper();
-    public List<Playlist> listaPlaylistPrivada;
+    public List<PlaylistPrivada> listaPlaylistPrivada;
 
 
     //region Overrides
+
     @Override
     public void cargar() {
         try{
@@ -27,7 +28,6 @@ public class PlaylistPrivadaRepo implements IRepository<Playlist> {
             this.listaPlaylistPrivada = new ArrayList<>();
         }
     }
-
 
     @Override
     public void guardar() {
@@ -39,17 +39,31 @@ public class PlaylistPrivadaRepo implements IRepository<Playlist> {
     }
 
     @Override
-    public boolean buscar(Playlist objeto) {
+    public void agregar(PlaylistPrivada... objeto) {
+        cargar();
+        this.listaPlaylistPrivada.addAll(List.of(objeto));
+        guardar();
+    }
+
+    @Override
+    public List<PlaylistPrivada> listar() {
+        cargar();
+        return this.listaPlaylistPrivada;
+    }
+
+    @Override
+    public boolean buscar(PlaylistPrivada objeto) {
         return false;
     }
 
     @Override
-    public void modificar(Playlist objeto) {
+    public void modificar(PlaylistPrivada objeto) {
         cargar();
-        for (Playlist playlistPriv : listaPlaylistPrivada){
+        for (PlaylistPrivada playlistPriv : listaPlaylistPrivada){
             if (playlistPriv.equals(objeto)){
                 playlistPriv.setNombre(objeto.getNombre());
                 playlistPriv.setListaCanciones(objeto.getListaCanciones());
+                playlistPriv.setIdCliente(objeto.getIdCliente());
                 break;
             }
         }
@@ -57,9 +71,9 @@ public class PlaylistPrivadaRepo implements IRepository<Playlist> {
     }
 
     @Override
-    public void eliminar(Playlist objeto) {
+    public void eliminar(PlaylistPrivada objeto) {
         cargar();
-        for (Playlist playlistPrivada : this.listaPlaylistPrivada) {
+        for (PlaylistPrivada playlistPrivada : this.listaPlaylistPrivada) {
             if (listaPlaylistPrivada.equals(objeto)) {
                 this.listaPlaylistPrivada.remove(playlistPrivada);
                 break;
@@ -67,20 +81,6 @@ public class PlaylistPrivadaRepo implements IRepository<Playlist> {
         }
         guardar();
     }
-
-    @Override
-    public List<Playlist> listar() {
-        cargar();
-        return this.listaPlaylistPrivada;
-    }
-
-    @Override
-    public void agregar(Playlist... objeto) {
-        cargar();
-        this.listaPlaylistPrivada.addAll(List.of(objeto));
-        guardar();
-    }
-
-
     //endregion
+
 }
