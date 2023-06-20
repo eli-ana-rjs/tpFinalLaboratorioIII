@@ -151,7 +151,7 @@ public class GestionClientes {
                 throw new IllegalArgumentException("El id del cliente no puede ser cero 0");
             }
             else{
-                cliente.setActivo(false);
+                cliente.setUsuarioActivo(false);
                 //clienteRepo.eliminar(cliente);
                 System.out.println("Cliente"+ cliente.getNombre()+"eliminado exitosamente");
             }
@@ -243,6 +243,27 @@ public class GestionClientes {
             }
         }
         return admin;
+    }
+
+    public Cliente buscarClienteId(int id){
+        List<Cliente> listaClientes = clienteRepo.listar();
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getId() == id) {
+                return cliente;
+            }
+        }
+        throw new RuntimeException("El id ingresado no existe ");
+    }
+
+    public void cambiarPlan(Cliente cliente){
+        if (!cliente.isPremium()){
+            cliente.setPremium(true);
+            System.out.println("El cliente "+cliente.getNombre()+" ahora es premium");
+        }
+        else{
+            cliente.setPremium(false);
+            System.out.println("El cliente "+cliente.getNombre()+" ahora es free");
+        }
     }
 
 
