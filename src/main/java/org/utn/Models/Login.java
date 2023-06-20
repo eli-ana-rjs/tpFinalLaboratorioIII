@@ -46,4 +46,8 @@ public class Login implements Serializable {
         return logueado.isAdmin();
     }
 
+    public static int idClienteLogueado(){
+        return logueado.getId();
+    }
+
 }

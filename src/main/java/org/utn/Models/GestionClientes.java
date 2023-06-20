@@ -94,6 +94,10 @@ public class GestionClientes {
             System.out.println("Tipo de plan incorrecto");
         }
 
+        System.out.print("Ingrese su fecha de nacimiento (dd/mm/aaaa): ");
+        String fechaNacimiento = scanner.nextLine();
+        cliente.setDomicilio(fechaNacimiento);
+
         return cliente;
 
     }

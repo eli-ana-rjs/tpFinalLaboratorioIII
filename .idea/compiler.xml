@@ -9,5 +9,8 @@
         <module name="pruebaMaven" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="tpFinalLaboratorioIII" target="20" />
+    </bytecodeTargetLevel>
   </component>
 </project>
