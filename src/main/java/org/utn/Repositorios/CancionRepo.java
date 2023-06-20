@@ -72,6 +72,62 @@ public class CancionRepo implements IRepository<Cancion> {
     }
 
     /**
+     * Busca cancion por nombre
+     * @param nombre de tipo String
+     * @return retorna una cancion buscada a partir del nombre
+     */
+
+    public Cancion buscarPorNombre(String nombre){
+        cargar();
+        Cancion cancionEncontrada = new Cancion();
+        List<Cancion> listaCanciones = listar();
+        for(Cancion c :listaCanciones)
+        {
+            if (c.getNombre().equalsIgnoreCase(nombre)) {
+                cancionEncontrada = c;
+            }
+        }
+        return cancionEncontrada;
+    }
+
+    /**
+     * Busca cancion por album
+     * @param album de tipo String
+     * @return retorna la cancion buscada a partir del album
+     */
+    public Cancion buscarPorAlbum(String album){
+        cargar();
+        Cancion cancionEncontrada = new Cancion();
+        List<Cancion> listaCanciones = listar();
+        for(Cancion c :listaCanciones)
+        {
+            if (c.getAlbum().equalsIgnoreCase(album)) {
+                cancionEncontrada = c;
+            }
+        }
+        return cancionEncontrada;
+    }
+
+    /**
+     * Busca cancion por artista
+     * @param artista de tipo String
+     * @return retorna la cancion buscada a partir del artista
+     */
+    public Cancion buscarPorArtista(String artista){
+        cargar();
+        Cancion cancionEncontrada = new Cancion();
+        List<Cancion> listaCanciones = listar();
+        for(Cancion c :listaCanciones)
+        {
+            if (c.getArtista().equalsIgnoreCase(artista)) {
+                cancionEncontrada = c;
+            }
+        }
+        return cancionEncontrada;
+    }
+
+
+    /**
      * Modifica datos de un archivo .json
      * @param objeto de clase cancion
      */
@@ -87,6 +143,7 @@ public class CancionRepo implements IRepository<Cancion> {
                 c.setComentarios(objeto.getComentarios());
                 c.setDuracion(objeto.getDuracion());
                 c.setGenero(objeto.getGenero());
+                c.setReproduciendo(objeto.isReproduciendo());
                 break;
             }
         }
@@ -169,7 +226,6 @@ public class CancionRepo implements IRepository<Cancion> {
      * Setea el genero de una cancion de un archivo .json     *
      * @param cancion de tipo cancion
      */
-//setea el genero de String a Enum
     public void setearGenero(Cancion cancion){
         cargar();
         for (Cancion c : this.listaCanciones){
@@ -179,7 +235,49 @@ public class CancionRepo implements IRepository<Cancion> {
             }
         }
         cargar();
+
     }
+
+    /**
+     *Setea el estado del atributo reproduciendo de una cancion contenida en un archivo .json
+     */
+    public void setReproduciendo(Cancion cancion){
+        cargar();
+        List<Cancion> lista = listar();
+        for(Cancion c : lista){
+            if(c.getIdCancion() == cancion.getIdCancion()){
+                if(c.isReproduciendo()){
+                    c.setReproduciendo(false);
+                    break;
+                }else{
+                    c.setReproduciendo(true);
+                    break;
+                }
+            }
+        }
+        guardar();
+    }
+    /**
+     * Busca cancion que se encuentra reproduciendo
+     * @return retorna nulo si la cancion no es encontrada
+     */
+
+    public Cancion buscaCancionReproducida(){
+        cargar();
+        Cancion cancionReproducida = new Cancion();
+        List<Cancion> lista = listar();
+
+        for (Cancion c : lista){
+            if(c.isReproduciendo()){
+                cancionReproducida = c;
+                break;
+            }
+        }
+        return cancionReproducida;
+    }
+
+
+
 //endregion
 }
 
