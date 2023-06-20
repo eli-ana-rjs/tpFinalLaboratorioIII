@@ -37,12 +37,14 @@ public class Cancion implements Serializable {
      */
     private int idCancion;
 
+    /**
+     * Constante PI
+     */
+    private boolean reproduciendo = false;
+
 
     //region Constructores
 
-    /**
-     * Constructor vacio de la clase Cancion
-     */
     public Cancion() {
     }
 
@@ -126,14 +128,21 @@ public class Cancion implements Serializable {
         this.genero = genero;
     }
 
+    public boolean isReproduciendo() {
+        return reproduciendo;
+    }
+
+    public void setReproduciendo(boolean reproduciendo) {
+        this.reproduciendo = reproduciendo;
+    }
+
     //endregion
 
     //region OVerrides
 
     @Override
     public String toString() {
-        return "<< " +
-                "Nombre: " + nombre  +
+        return  "<< Nombre: " + nombre  +
                 ", Artista: " + artista  +
                 ", Album: " + album +
                 ", Duracion: " + duracion  +
@@ -148,12 +157,12 @@ public class Cancion implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cancion cancion = (Cancion) o;
-        return idCancion == cancion.idCancion && Objects.equals(nombre, cancion.nombre) && Objects.equals(artista, cancion.artista) && Objects.equals(album, cancion.album) && Objects.equals(duracion, cancion.duracion) && Objects.equals(comentarios, cancion.comentarios) && genero == cancion.genero;
+        return idCancion == cancion.idCancion && reproduciendo == cancion.reproduciendo && Objects.equals(nombre, cancion.nombre) && Objects.equals(artista, cancion.artista) && Objects.equals(album, cancion.album) && Objects.equals(duracion, cancion.duracion) && Objects.equals(comentarios, cancion.comentarios) && genero == cancion.genero;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, artista, album, duracion, comentarios, genero, idCancion);
+        return Objects.hash(nombre, artista, album, duracion, comentarios, genero, idCancion, reproduciendo);
     }
 
     //endregion
