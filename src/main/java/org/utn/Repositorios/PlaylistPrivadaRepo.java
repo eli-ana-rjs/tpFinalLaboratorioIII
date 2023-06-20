@@ -59,10 +59,11 @@ public class PlaylistPrivadaRepo implements IRepository<PlaylistPrivada> {
     @Override
     public void modificar(PlaylistPrivada objeto) {
         cargar();
-        for (Playlist playlistPriv : listaPlaylistPrivada){
+        for (PlaylistPrivada playlistPriv : listaPlaylistPrivada){
             if (playlistPriv.equals(objeto)){
                 playlistPriv.setNombre(objeto.getNombre());
                 playlistPriv.setListaCanciones(objeto.getListaCanciones());
+                playlistPriv.setIdCliente(objeto.getIdCliente());
                 break;
             }
         }
@@ -72,7 +73,7 @@ public class PlaylistPrivadaRepo implements IRepository<PlaylistPrivada> {
     @Override
     public void eliminar(PlaylistPrivada objeto) {
         cargar();
-        for (Playlist playlistPrivada : this.listaPlaylistPrivada) {
+        for (PlaylistPrivada playlistPrivada : this.listaPlaylistPrivada) {
             if (listaPlaylistPrivada.equals(objeto)) {
                 this.listaPlaylistPrivada.remove(playlistPrivada);
                 break;

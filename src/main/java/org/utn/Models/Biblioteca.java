@@ -1,4 +1,5 @@
 package org.utn.Models;
+import org.utn.Repositorios.PlaylistPrivadaRepo;
 import org.utn.Repositorios.PlaylistPublicaRepo;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class Biblioteca {
         int opcion;
         playlistActiva = gestionPlaylistPrivada.existePlaylist(idPlaylist);
         try {
-            if (playlistActiva != null){
+            if (playlistActiva != null && playlistActiva.getIdCliente() == idCliente){
                 System.out.println("Que desea hacer?");
                 System.out.println("1. Ver canciones de la playlist");
                 System.out.println("2. Crear nueva playlist");
@@ -75,10 +76,15 @@ public class Biblioteca {
         System.out.println("Que desea hacer?");
         System.out.println("1. Escuchar cancion");
         System.out.println("2. Agregar cancion");
-        System.out.println("2. Eliminar cancion");
+        System.out.println("3. Eliminar cancion");
         opcion = scanner.nextInt();
         switch (opcion){
-            case 1: gestionPlaylistPriv.agregarCancion(playlistPrivActiva);
+            case 1: //escuchar cancion
+                break;
+            case 2: gestionPlaylistPriv.agregarCancion(playlistPrivActiva);
+                break;
+            case 3: gestionPlaylistPriv.eliminarCancion(playlistPrivActiva);
+                break;
         }
     }
 }
