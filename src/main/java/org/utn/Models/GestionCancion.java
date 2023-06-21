@@ -5,6 +5,8 @@ import java.util.MissingFormatArgumentException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+import static org.utn.Utilidades.Utilidades.dibujarRectanguloTexto;
+
 /**
  * @author Milagros Pecar
  * @version 1.0
@@ -29,7 +31,7 @@ public class GestionCancion {
      * Menu que permite buscar canciones segun su nombre, album, artista o genero
      */
     public void menuBusquedaCanciones() {
-
+        Scanner scanString = new Scanner(System.in);
         int eleccion, salir = 0;
         String datoIngresado;
         boolean error = false;
@@ -37,7 +39,7 @@ public class GestionCancion {
         do {
             try {
                 switchBusquedaCanciones();
-                System.out.println("Desea volver al menu de busqueda? Presione 0 para salir o cualquier otro numero para continuar");
+                System.out.println("Desea volver al menu de busqueda? 1- Continuar  0- Salir");
                 salir = scan.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Ingrese una opcion valida"); //volver a menu
@@ -57,13 +59,13 @@ public class GestionCancion {
      * Muestra el menu switch para buscar canciones por nombre, album, artista o genero
      */
     public void switchBusquedaCanciones() {
-
+        Scanner scanString = new Scanner(System.in);
         String datoIngresado;
         int eleccion;
         boolean encontrar = false;
         Cancion cancionBuscada = new Cancion();
 
-        System.out.println("<< Busqueda de canciones >>");
+        dibujarRectanguloTexto("Busqueda de canciones");
         imprimirLineas();
         System.out.println("1- Nombre");
         System.out.println("2- Album");
@@ -79,9 +81,9 @@ public class GestionCancion {
                     datoIngresado = scanString.nextLine();
                     cancionBuscada = buscarPorNombre(datoIngresado);
                     encontrar = buscarCancion(cancionBuscada);
-                    if(encontrar){
+                    if (encontrar) {
                         mostrarPorNombre(datoIngresado);
-                    }else{
+                    } else {
                         System.out.println("Nombre no encontrado");
                     }
                 } while (encontrar == false);
@@ -94,12 +96,12 @@ public class GestionCancion {
                     datoIngresado = scanString.nextLine();
                     cancionBuscada = buscarPorAlbum(datoIngresado);
                     encontrar = buscarCancion(cancionBuscada);
-                    if(encontrar) {
+                    if (encontrar) {
                         mostrarPorAlbum(datoIngresado);
-                    }else{
+                    } else {
                         System.out.println("Album no encontrado");
                     }
-                }while(encontrar == false);
+                } while (encontrar == false);
                 break;
 
             case 3:
@@ -108,25 +110,26 @@ public class GestionCancion {
                     datoIngresado = scanString.nextLine();
                     cancionBuscada = buscarPorArtista(datoIngresado);
                     encontrar = buscarCancion(cancionBuscada);
-                    if(encontrar) {
+                    if (encontrar) {
                         mostrarPorArtista(datoIngresado);
-                    }else{
+                    } else {
                         System.out.println("Artista no encontrado");
                     }
-                }while(encontrar == false);
+                } while (encontrar == false);
                 break;
 
             case 4:
-                do {System.out.println("Ingrese el genero");
+                do {
+                    System.out.println("Ingrese el genero");
                     datoIngresado = scanString.nextLine();
                     cancionBuscada = buscarPorGenero(datoIngresado);
                     encontrar = buscarCancion(cancionBuscada);
-                    if(encontrar) {
+                    if (encontrar) {
                         mostrarPorGenero(datoIngresado);
-                    }else{
+                    } else {
                         System.out.println("Genero no encontrado");
                     }
-                }while(encontrar  == false);
+                } while (encontrar == false);
                 break;
 
             default:
@@ -146,11 +149,14 @@ public class GestionCancion {
             for (Cancion c : listaCanciones) {
                 mostrarUnaCancion(c);
             }
+        } else {
+            System.out.println("El archivo se encuentra vacio");
         }
     }
 
     /**
      * Muestra una cancion
+     *
      * @param cancion de clase Cancion
      */
     public void mostrarUnaCancion(Cancion cancion) {
@@ -160,6 +166,7 @@ public class GestionCancion {
 
     /**
      * Muestra canciones segun el nombre pasado por parametro
+     *
      * @param nombre de tipo String
      */
     public void mostrarPorNombre(String nombre) {
@@ -174,44 +181,48 @@ public class GestionCancion {
 
     /**
      * Busca una cancion por nombre
+     *
      * @param nombre de tipo String
      * @return retorna la cancion encontrada
      */
 
     public Cancion buscarPorNombre(String nombre) {
-        Cancion cancionEncontrada =repo.buscarPorNombre(nombre);
+        Cancion cancionEncontrada = repo.buscarPorNombre(nombre);
         return cancionEncontrada;
     }
 
     /**
      * Busca una cancion por album
+     *
      * @param album de tipo String
      * @return retorna la cancion encontrada
      */
     public Cancion buscarPorAlbum(String album) {
-        Cancion cancionEncontrada =repo.buscarPorAlbum(album);
+        Cancion cancionEncontrada = repo.buscarPorAlbum(album);
         return cancionEncontrada;
     }
 
     /**
      * Busca una cancion por artista
+     *
      * @param artista de tipo String
      * @return retorna la cancion encontrada
      */
     public Cancion buscarPorArtista(String artista) {
-        Cancion cancionEncontrada =repo.buscarPorArtista(artista);
+        Cancion cancionEncontrada = repo.buscarPorArtista(artista);
         return cancionEncontrada;
     }
 
     /**
      * Muestra canciones segun el artista pasado por parametro
+     *
      * @param artista de tipo String
      */
     public void mostrarPorArtista(String artista) {
         repo.cargar();
         List<Cancion> listaCanciones = repo.listar();
         for (Cancion c : listaCanciones) {
-            if(c.getArtista().equalsIgnoreCase(artista)){
+            if (c.getArtista().equalsIgnoreCase(artista)) {
                 mostrarUnaCancion(c);
             }
         }
@@ -219,13 +230,14 @@ public class GestionCancion {
 
     /**
      * Muestra canciones segun el album pasado por parametro
+     *
      * @param album de tipo String
      */
     public void mostrarPorAlbum(String album) {
         repo.cargar();
         List<Cancion> listaCanciones = repo.listar();
         for (Cancion c : listaCanciones) {
-            if(c.getAlbum().equalsIgnoreCase(album)){
+            if (c.getAlbum().equalsIgnoreCase(album)) {
                 mostrarUnaCancion(c);
             }
         }
@@ -233,6 +245,7 @@ public class GestionCancion {
 
     /**
      * Muestra canciones segun el nombre pasado por parametro
+     *
      * @param generoBusqueda de tipo String
      */
     public void mostrarPorGenero(String generoBusqueda) {
@@ -241,7 +254,7 @@ public class GestionCancion {
         List<Cancion> listaCanciones = repo.listar();
         for (Cancion c : listaCanciones) {
             genero = devolverGeneroString(c);
-            if(generoBusqueda.equalsIgnoreCase(genero)){
+            if (generoBusqueda.equalsIgnoreCase(genero)) {
                 mostrarUnaCancion(c);
             }
         }
@@ -249,6 +262,7 @@ public class GestionCancion {
 
     /**
      * Busca cancion por genero
+     *
      * @param generoBusqueda de tipo String
      * @return retorna una cancion
      */
@@ -268,13 +282,14 @@ public class GestionCancion {
 
     /**
      * Metodo que devuelve el genero de una cancion de tipo String
+     *
      * @param c de tipo Cancion
      * @return retorna el genero de una cancion en formato String
      */
-    public String devolverGeneroString(Cancion c){
+    public String devolverGeneroString(Cancion c) {
         String generoString = "";
 
-        if(c.getGenero().equals(GeneroCancion.KPOP)) {
+        if (c.getGenero().equals(GeneroCancion.KPOP)) {
             generoString = "Kpop";
         } else if (c.getGenero().equals(GeneroCancion.POP)) {
             generoString = "Pop";
@@ -284,7 +299,7 @@ public class GestionCancion {
             generoString = "Metal";
         } else if (c.getGenero().equals(GeneroCancion.RAP)) {
             generoString = "Rap";
-        } else if (c.getGenero().equals(GeneroCancion.ROCK)){
+        } else if (c.getGenero().equals(GeneroCancion.ROCK)) {
             generoString = "Rock";
         }
         return generoString;
@@ -292,9 +307,10 @@ public class GestionCancion {
 
     /**
      * Agrega x cantidad de canciones
+     *
      * @param c de tipo cancion
      */
-    public void agregarCanciones(Cancion...c){
+    public void agregarCanciones(Cancion... c) {
 
         repo.agregar(c);
     }
@@ -302,11 +318,11 @@ public class GestionCancion {
     /**
      * Menu para agregar canciones por teclado
      */
-    public void agregarCancionPorTeclado(){
+    public void agregarCancionPorTeclado() {
 
         int salir, ultimoID, eleccion;
         Cancion nuevaCancion = new Cancion();
-        System.out.println("<< Biblioteca de canciones >>");
+        dibujarRectanguloTexto("Biblioteca de canciones");
         imprimirLineas();
         mostrarTodas();
         imprimirLineas();
@@ -316,7 +332,7 @@ public class GestionCancion {
                 System.out.println("1- Agregar canciones");
                 System.out.println("2- Salir");
                 eleccion = scan.nextInt();
-                switch(eleccion) {
+                switch (eleccion) {
 
                     case 1:
 
@@ -339,20 +355,24 @@ public class GestionCancion {
 
                         break;
 
+                    case 2:
+                        System.out.println("Hasta pronto");
+                        break;
+
                     default:
                         System.out.println("Opcion no valida. Vuelva a intentarlo");
                         break;
                 }
-                System.out.println("Desea seguir agregando canciones? Presione 0 para salir o cualquier otro numero para continuar");
+                System.out.println("Desea seguir agregando canciones? 1- Continuar  0- Salir");
                 salir = scan.nextInt();
 
-            }while(salir != 0);
+            } while (salir != 0);
 
-        } catch(InputMismatchException e){
+        } catch (InputMismatchException e) {
 
             System.out.println("Ingrese un dato correcto");    //volver menu ppal
 
-        }finally{
+        } finally {
 
             scan.close();
             scanString.close();
@@ -362,19 +382,21 @@ public class GestionCancion {
 
     /**
      * Elimina una cancion
+     *
      * @param c de tipo Cancion
      */
-    public void eliminarCancion(Cancion c){
+    public void eliminarCancion(Cancion c) {
 
         repo.eliminar(c);
     }
 
     /**
      * Busca una cancion
+     *
      * @param c de tipo Cancion
      * @return retorna true si encuentra la cancion, false si no la encuentra
      */
-    public boolean buscarCancion(Cancion c){
+    public boolean buscarCancion(Cancion c) {
         boolean encontrar = repo.buscar(c);
 
         return encontrar;
@@ -383,7 +405,7 @@ public class GestionCancion {
     /**
      * Menu para modificar una cancion por teclado
      */
-    public void modificarCancion() { //El scanner no me toma cuando separo las palabras
+    public void modificarCancion() {
         repo.cargar();
         mostrarTodas();
         Cancion cancionModificada = new Cancion();
@@ -439,13 +461,14 @@ public class GestionCancion {
                         System.out.println("Opcion no valida. Vuelva a intentarlo");
                         break;
                 }
+                repo.modificar(cancionModificada);
                 System.out.println("Desea seguir modificando datos? Presione 0 para salir o cualquier otro numero para continuar");
                 salir = scan.nextInt();
-                repo.modificar(cancionModificada);
-            }catch(InputMismatchException e){
+
+            } catch (InputMismatchException e) {
                 System.out.println("Ingrese un dato correcto");    //volver menu ppal
             }
-        }while(salir != 0);
+        } while (salir != 0);
 
         scan.close();
         scanString.close();
@@ -453,21 +476,23 @@ public class GestionCancion {
 
     /**
      * Busca el id de la ultima cancion agregada a un archivo
+     *
      * @return retorna el id de la ultima cancion agregada a un archivo
      */
-    public int buscarUltimoID(){
+    public int buscarUltimoID() {
 
         return repo.buscarUltimoID();
     }
 
     /**
      * Setea el genero de una cancion
-     * @param c de tipo Cancion
+     *
+     * @param c      de tipo Cancion
      * @param genero de tipo String
      */
-    public void seteoGenero(Cancion c, String genero){
+    public void seteoGenero(Cancion c, String genero) {
 
-        if(genero.equalsIgnoreCase("Rock")) {
+        if (genero.equalsIgnoreCase("Rock")) {
             c.setGenero(GeneroCancion.ROCK);
         } else if (genero.equalsIgnoreCase("Pop")) {
             c.setGenero(GeneroCancion.POP);
@@ -485,29 +510,32 @@ public class GestionCancion {
 
     /**
      * Setea el estado del atributo reproduciendo
+     *
      * @param cancion de tipo Cancion
      */
-    public void seteoReproduciendo(Cancion cancion){
+    public void seteoReproduciendo(Cancion cancion) {
         repo.setReproduciendo(cancion);
     }
 
     /**
      * Busca cancion reproducida
+     *
      * @return retorna la cancion que se encuentra reproduciendo. Si no se encuentra ninguna retorna null
      */
-    public Cancion buscarCancionReproducida(){
+    public Cancion buscarCancionReproducida() {
         Cancion cancionReproducida = repo.buscaCancionReproducida();
         return cancionReproducida;
     }
 
     /**
      * Busca cancion por id
+     *
      * @param id de tipo int
      * @return retorna la cancion buscada a partir del id
      */
-    public Cancion buscarPorID(int id){
+    public Cancion buscarPorID(int id) {
 
-        Cancion cancionBuscada =  repo.buscaCancionPorID(id);
+        Cancion cancionBuscada = repo.buscaCancionPorID(id);
 
         return cancionBuscada;
     }
@@ -515,37 +543,148 @@ public class GestionCancion {
     /**
      * Muestra un menu de reproduccion de canciones
      */
-    public void menuReproduccion(){
+    public void menuReproduccion() {
         String opcion;
+        int eleccion = 0;
+        int busqueda = 0;
         int id;
-        Cancion cancionReproducida = buscarCancionReproducida();
-        boolean encontrar = buscarCancion(cancionReproducida);
-        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<Reproductor>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        if(encontrar){
-            mostrarCancionReproducida(cancionReproducida);
-        }else {
-            System.out.println("Desea buscar una cancion? Si/No");
-            opcion = scanString.nextLine();
-            if(opcion.equalsIgnoreCase("si")){
-                switchBusquedaCanciones();
-                System.out.println("Ingrese el id de la cancion que desea reproducir");
-                id = scan.nextInt();
-                cancionReproducida = buscarPorID(id);
-                seteoReproduciendo(cancionReproducida);
-                mostrarCancionReproducida(cancionReproducida);
 
-            }else{
-                System.out.println("Hasta la proxima"); //volver al menu ppal
-            }
+        dibujarRectanguloTexto("Reproductor");
+        try {
+            do {
+                Cancion cancionNoReproducir = new Cancion();
+                Cancion cancionReproducida = buscarCancionReproducida();
+                boolean encontrar = buscarCancion(cancionReproducida);
+
+                if (encontrar) {
+
+                    mostrarCancionReproducida(cancionReproducida);
+                    int duracion = 30;
+                    for (int segundos = 0; segundos <= duracion; segundos++) {
+
+                        System.out.print("\u2588"); // Carácter especial que representa un bloque sólido
+
+                        try {
+                            Thread.sleep(200); // Espera 0.2 segundos
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    System.out.println("\n1- Buscar canciones 2- Volver al menu principal\n");
+                    busqueda = scan.nextInt();
+
+                } else {
+                    System.out.println("\n<< Ninguna cancion reproduciendo >>");
+                    System.out.println("\n1- Buscar canciones 2- Volver al menu principal");
+                    busqueda = scan.nextInt();
+                }
+
+                switch (busqueda) {
+
+                    case 1:
+                        switchBusquedaCanciones();
+                        cancionNoReproducir = cancionReproducida;
+                        seteoReproduciendo(cancionNoReproducir);
+                        System.out.println("Ingrese el numero de cancion que desea reproducir");
+                        id = scan.nextInt();
+                        cancionReproducida = buscarPorID(id);
+                        seteoReproduciendo(cancionReproducida);
+                        break;
+
+                    case 2:
+                        System.out.println("Hasta la proxima");
+                        seteoReproduciendo(cancionReproducida);
+                        eleccion = 1;
+                        break;
+                }
+            }while (eleccion == 0) ;
+        }catch(InputMismatchException e){
+            System.out.println("Opcion invalida");
         }
-        scan.close();
+
     }
+
+    public void MenuReproduccionPlaylist(int idPlaylist){
+        GestionPlaylistPrivada gestionPlaylistPrivada = new GestionPlaylistPrivada();
+        GestionPlaylistPublica gestionPlaylistPublica = new GestionPlaylistPublica();
+        PlaylistPrivada playlistPrivada = new PlaylistPrivada();
+        PlaylistPublica playlistPublica = new PlaylistPublica();
+
+        String opcion;
+        int eleccion = 0;
+        int busqueda = 0;
+        int id;
+
+        dibujarRectanguloTexto("Reproductor");
+        try {
+            do {
+                Cancion cancionNoReproducir = new Cancion();
+                Cancion cancionReproducida = buscarCancionReproducida();
+                boolean encontrar = buscarCancion(cancionReproducida);
+
+                if (encontrar) {
+
+                    mostrarCancionReproducida(cancionReproducida);
+                    int duracion = 30;
+                    for (int segundos = 0; segundos <= duracion; segundos++) {
+
+                        System.out.print("\u2588"); // Carácter especial que representa un bloque sólido
+
+                        try {
+                            Thread.sleep(200); // Espera 0.2 segundos
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    System.out.println("\n1- Volver a la playlist 2- Volver al menu principal\n");
+                    busqueda = scan.nextInt();
+
+                } else {
+                    System.out.println("\n<< Ninguna cancion reproduciendo >>");
+                    System.out.println("\n1- Volver a la playlist 2- Volver al menu principal");
+                    busqueda = scan.nextInt();
+                }
+
+                switch (busqueda) {
+
+                    case 1:
+                        playlistPrivada = gestionPlaylistPrivada.existePlaylist(idPlaylist); //lo mismo para play publica
+                        //playlistPublica = gestionPlaylistPublica.existePlaylist(idPlaylist); //
+                        if(playlistPrivada != null){
+                            gestionPlaylistPrivada.verCanciones(playlistPrivada);
+                        } else if (playlistPublica != null) {
+                            //gestionPlaylistPublica.verCanciones(playlistPublica);
+                        }
+                        cancionNoReproducir = cancionReproducida;
+                        seteoReproduciendo(cancionNoReproducir);
+                        System.out.println("Ingrese el numero de cancion que desea reproducir");
+                        id = scan.nextInt();
+                        cancionReproducida = buscarPorID(id);
+                        seteoReproduciendo(cancionReproducida);
+                        break;
+
+                    case 2:
+                        System.out.println("Hasta la proxima");
+                        seteoReproduciendo(cancionReproducida);
+                        eleccion = 1;
+                        break;
+                }
+            }while (eleccion == 0) ;
+        }catch(InputMismatchException e){
+            System.out.println("Opcion invalida");
+        }
+
+    }
+
+
     /**
      * Muestra la cancion reproducida
      * @param cancionReproducida de tipo Cancion
      */
     public void mostrarCancionReproducida(Cancion cancionReproducida){
-        System.out.println("<<<Reproduciendo " + cancionReproducida.getNombre()+" de "+ cancionReproducida.getArtista() + " >>>");
+        System.out.println("<<< Reproduciendo " + cancionReproducida.getNombre()+" de "+ cancionReproducida.getArtista() + " >>>");
     }
 
 
@@ -583,6 +722,7 @@ public class GestionCancion {
     public void imprimirLineas(){
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
+
 
 //endregion
 }

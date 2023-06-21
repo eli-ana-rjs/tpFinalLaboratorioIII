@@ -142,13 +142,13 @@ public class Cancion implements Serializable {
 
     @Override
     public String toString() {
-        return  "<< Nombre: " + nombre  +
+        return   "<< " + idCancion + "- Nombre: " + nombre  +
                 ", Artista: " + artista  +
                 ", Album: " + album +
                 ", Duracion: " + duracion  +
                 ", Comentarios: " + comentarios  +
                 ", Genero: " + genero +
-                ", IdCancion: " + idCancion +
+                /*", IdCancion: " + idCancion +*/
                 " >>";
     }
 
