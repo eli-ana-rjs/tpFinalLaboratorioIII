@@ -1,7 +1,6 @@
 package org.utn.Menu;
 
-import org.utn.Models.Cliente;
-import org.utn.Models.GestionClientes;
+import org.utn.Models.*;
 import org.utn.Utilidades.Color;
 import java.util.Scanner;
 import static org.utn.Utilidades.Utilidades.dibujarRectanguloTexto;
@@ -57,7 +56,8 @@ public class MenuAdmin {
         System.out.println(Color.azul + "1. Gestion Clientes");
         System.out.println(Color.magenta + "2. Gestion Administradores");
         System.out.println(Color.verde + "3. Gestion Canciones");
-        System.out.println(Color.amarillo + "4. Salir");
+        System.out.println("4. Crear una playlist publica");
+        System.out.println(Color.amarillo + "5. Salir");
         System.out.print(Color.rojo + "Elige una opción: \n" + Color.b);
     }
 
@@ -68,10 +68,12 @@ public class MenuAdmin {
         System.out.println("\n");
 
         System.out.println("1. Dar de alta un Cliente ");
-        System.out.println("2. Modificar datos de un cliente ");
+        System.out.println("2. Modificar datos de un cliente "); // falta testear
         System.out.println("3. Dar de baja un Cliente ");
         System.out.println("4. Listar todos los Clientes ");
-        System.out.println("5. Volver al menú principal ");
+        System.out.println("5. Listar todos los Clientes Free ");
+        System.out.println("6. Listar todos los Clientes Premium ");
+        System.out.println("7. Volver al menú principal ");
         System.out.print("Elige una opción: ");
     }
 
@@ -103,24 +105,50 @@ public class MenuAdmin {
 
     }
 
+    public void mostrarSubMenuPlaylistPublica(String opcion){
+        String titulo = "Submenu de " + opcion;
+        dibujarRectanguloTexto(titulo);
+
+        System.out.println("1. Crear playlist Publica");
+        System.out.println("2. Mostrar Playlists Publicas");
+        System.out.println("3. Modificar una Playlist Publica");
+        System.out.println("4. Dar de baja una Playlist Publica");
+    }
+
     public void manejarOpcionSubMenuClientes(int opcionSubMenuClientes) {
+
+        GestionClientes gestionClientes = new GestionClientes();
         switch (opcionSubMenuClientes) {
 
             case 1:
-                GestionClientes gestionClientes = new GestionClientes();
+
                 Cliente cliente = gestionClientes.pedirDatosCliente();
                 gestionClientes.agregarCliente(cliente);
                 break;
             case 2:
-                System.out.println("Modificar datos de un cliente");
+                Cliente clienteModificado = gestionClientes.pedirDatosCliente();
+                gestionClientes.modificarCliente(clienteModificado);
+
                 break;
             case 3:
-                GestionClientes gestionClientes1 = new GestionClientes();
+
+                Cliente bajaCliente = gestionClientes.buscarClienteId(2);
+                System.out.println(bajaCliente);
+                gestionClientes.eliminarCliente(bajaCliente);
 
                 break;
             case 4:
-                GestionClientes gestionClientes2 = new GestionClientes();
-                gestionClientes2.mostrarClientes();
+
+                gestionClientes.mostrarClientes();
+                break;
+            case 5:
+
+                gestionClientes.listarClientesFree();
+
+                break;
+            case 6:
+
+                gestionClientes.listarClientesPremium();
                 break;
             default:
                 System.out.println("Opción inválida. Introduce un número válido.");
@@ -129,9 +157,10 @@ public class MenuAdmin {
     }
 
     public void manejarOpcionSubMenuAdministradores(int opcionSubMenuAdministradores) {
+        GestionClientes gestionCliente = new GestionClientes();
         switch (opcionSubMenuAdministradores) {
             case 1:
-                System.out.println("\n Dando de alta un Admin...\n");
+                System.out.println("Dando de alta un admin ");
                 break;
             case 2:
                 System.out.println("Modificando datos de un administrador...");
@@ -140,7 +169,7 @@ public class MenuAdmin {
                 System.out.println("Dando de baja un admin...");
                 break;
             case 4:
-                System.out.println("Lista de todos los Administradores del Sistema");
+                gestionCliente.listarAdministradores();
                 break;
             default:
                 System.out.println("Opción inválida. Introduce un número válido.");
@@ -149,18 +178,55 @@ public class MenuAdmin {
     }
 
     public void manejarOpcionSubMenuCanciones(int opcionSubMenuCanciones) {
+
+        GestionCancion gestionCancion = new GestionCancion();
+        Scanner scanner = new Scanner(System.in);
+
         switch (opcionSubMenuCanciones) {
             case 1:
                 System.out.println("Dando de alta una cancion...");
+                gestionCancion.agregarCancionPorTeclado();
                 break;
             case 2:
                 System.out.println("Modificando datos de una cancion");
+                gestionCancion.modificarCancion();
                 break;
             case 3:
                 System.out.println("Dar de baja una cancion...");
+                System.out.println("Ingrese el id de la cancion que desea eliminar: ");
+                int idCancionEliminar = scanner.nextInt();
+                Cancion cancionEliminar = gestionCancion.buscarPorID(idCancionEliminar);
+                gestionCancion.eliminarCancion(cancionEliminar);
                 break;
             case 4:
                 System.out.println("Listado de canciones...");
+                gestionCancion.mostrarTodas();
+                break;
+            default:
+                System.out.println("Opción inválida. Introduce un número válido.");
+                break;
+        }
+    }
+
+    // ver que cosas se hacen con las playlists
+    public void manejarOpcionSubMenuPlaylists(int opcionSubMenuPlaylists){
+
+        GestionPlaylistPublica gestionPlaylistPublica = new GestionPlaylistPublica();
+        PlaylistPublica playlistPublica = new PlaylistPublica();
+
+        switch (opcionSubMenuPlaylists) {
+            case 1:
+                System.out.println("Crear Playlist Publica...");
+                gestionPlaylistPublica.crearPlaylistPublica(playlistPublica);
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
                 break;
             default:
                 System.out.println("Opción inválida. Introduce un número válido.");

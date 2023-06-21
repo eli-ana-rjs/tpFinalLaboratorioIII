@@ -49,12 +49,14 @@ public class Biblioteca {
         catch (InputMismatchException e){
             e.getMessage();
         }
+
         playlistActiva = gestionPlaylistPublica.existePlaylist(idPlaylist);
         try {
+
             if (playlistActiva != null){
                 System.out.println("1. Ver canciones de la playlist");
-                gestionPlaylistPublica.verCanciones(playlistActiva);
-                menuPlaylistActiva(playlistActiva);
+                //gestionPlaylistPublica.verCanciones(playlistActiva);
+                //menuPlaylistActiva(playlistActiva);
             }
             else {
                 throw new IllegalArgumentException("ID no existe, ingrese otro ID");
@@ -63,6 +65,8 @@ public class Biblioteca {
             System.out.println(e.getMessage());
         }
         menuPlaylistActivaFree(playlistActiva);
+
+
     }
 
     //Menu de ingreso a Playlist Privada

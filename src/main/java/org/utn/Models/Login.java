@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 public class Login implements Serializable {
 
-    static Cliente logueado = null;
-    static int idLogueado = logueado.getId();
+   // static Cliente logueado = null;
+
+
+    private static Cliente logueado = null;
+
 
     private int intentosRestantes;
 
@@ -31,7 +34,7 @@ public class Login implements Serializable {
         if (cliente.getPassword().equals(password)) {
 
             logueado = cliente;
-            logueado.getId();
+
             return true;
         }
         this.intentosRestantes--;
@@ -46,8 +49,11 @@ public class Login implements Serializable {
         return logueado.isAdmin();
     }
 
-    public static int idClienteLogueado(){
-        return logueado.getId();
+    public static Cliente getLogueado() {
+        return logueado;
     }
 
+    public static void setLogueado(Cliente logueado) {
+        Login.logueado = logueado;
+    }
 }

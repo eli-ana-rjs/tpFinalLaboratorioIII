@@ -10,6 +10,7 @@ public class FormLogin {
     public static void dibujarMenu() {
 
         Login login = new Login();
+
         boolean seLogueo = false;
         MenuAdmin menuAdmin = new MenuAdmin();
         MenuCliente menuCliente = new MenuCliente();
@@ -32,10 +33,13 @@ public class FormLogin {
             }
 
             if (Login.estaLogueado()) {
+
                 if (Login.esAdministrador()) {
                     menuAdmin.iniciarMenuAdmin();
-                } else {
+                } else if(!Login.getLogueado().isPremium()){
                     menuCliente.iniciarMenuClienteFree();
+                } else {
+                    menuCliente.iniciarMenuClientePremium();
                 }
             } else {
                 System.out.println("Intentos agotados. Por favor registrese...");

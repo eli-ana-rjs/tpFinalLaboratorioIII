@@ -18,7 +18,7 @@
   "password" : "contraseña456",
   "admin" : false,
   "id" : 2,
-  "usuarioActivo" : true,
+  "usuarioActivo" : false,
   "genero" : "MASCULINO",
   "domicilio" : "Avenida Central, 456",
   "premium" : false,
@@ -48,7 +48,7 @@
   "genero" : "MASCULINO",
   "domicilio" : "Avenida Norte, 987",
   "premium" : false,
-  "tipoDePlan" : "DUO",
+  "tipoDePlan" : "GRATIS",
   "fechaNacimiento" : "30-11-1985"
 }, {
   "nombre" : "Laura",
@@ -63,4 +63,69 @@
   "premium" : true,
   "tipoDePlan" : "INDIVIDUAL",
   "fechaNacimiento" : "24-05-1987"
+}, {
+  "nombre" : "Mariana",
+  "apellido" : "Gutierrez",
+  "email" : "mariana23@gmail.com",
+  "password" : "hola23",
+  "admin" : false,
+  "id" : 6,
+  "usuarioActivo" : true,
+  "genero" : "FEMENINO",
+  "domicilio" : "Alem 3245",
+  "premium" : true,
+  "tipoDePlan" : "DUO",
+  "fechaNacimiento" : "08/03/1983"
+}, {
+  "nombre" : "Jacinto",
+  "apellido" : "Alfonso",
+  "email" : "jacinto61@hotmail.com",
+  "password" : "234dfg",
+  "admin" : false,
+  "id" : 7,
+  "usuarioActivo" : true,
+  "genero" : "MASCULINO",
+  "domicilio" : "Marconi 1200",
+  "premium" : true,
+  "tipoDePlan" : "INDIVIDUAL",
+  "fechaNacimiento" : "11/02/1961"
+}, {
+  "nombre" : "Marcos",
+  "apellido" : "Roldan",
+  "email" : "marquitos.mdq@yahoo.com",
+  "password" : "mdq234",
+  "admin" : false,
+  "id" : 8,
+  "usuarioActivo" : true,
+  "genero" : "OTRO",
+  "domicilio" : "Mosconi 2098",
+  "premium" : false,
+  "tipoDePlan" : "GRATIS",
+  "fechaNacimiento" : "15/11/1989"
+}, {
+  "nombre" : "Alberto",
+  "apellido" : "Suarez",
+  "email" : "albert.s@gmail.com",
+  "password" : "124hgj",
+  "admin" : false,
+  "id" : 9,
+  "usuarioActivo" : true,
+  "genero" : "MASCULINO",
+  "domicilio" : "Corrientes 2340",
+  "premium" : true,
+  "tipoDePlan" : "FAMILIAR",
+  "fechaNacimiento" : "08/11/1978"
+}, {
+  "nombre" : "Marta",
+  "apellido" : "Sanchez",
+  "email" : "marta.sanchez@hotmail.com",
+  "password" : "wer456",
+  "admin" : false,
+  "id" : 10,
+  "usuarioActivo" : true,
+  "genero" : "FEMENINO",
+  "domicilio" : "Buenos Aires 2345",
+  "premium" : false,
+  "tipoDePlan" : "GRATIS",
+  "fechaNacimiento" : "22/09/1965"
 } ]
