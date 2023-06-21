@@ -8,9 +8,9 @@ public class Main {
 
         Cliente.setContadorId(cantidadClientes);
 
-        FormLogin.dibujarMenu();
-
+        //FormLogin.dibujarMenu();
         /*
+
         Cliente cliente1 = new Cliente("Ana", "Gómez", "ana.gomez@example.com", "secreta123", Genero.FEMENINO, "Calle Principal, 123", true, TipoDePlan.INDIVIDUAL);
         Cliente cliente2 = new Cliente("Juan", "Pérez", "juan.perez@example.com",  "contraseña456", Genero.MASCULINO, "Avenida Central, 456", false, TipoDePlan.GRATIS);
         Cliente cliente3 = new Cliente("María", "Rodríguez", "maria.rodriguez@example.com",  "miPassword789", Genero.FEMENINO, "Calle Secundaria, 789", true, TipoDePlan.FAMILIAR);
@@ -23,9 +23,17 @@ public class Main {
         gestionClientes.agregarCliente(cliente4);
         gestionClientes.agregarCliente(cliente5);
         */
-
+        GestionPlaylistPrivada gestionPlaylistPrivada = new GestionPlaylistPrivada();
+        //gestionPlaylistPrivada.crearPlaylist(2);
+        /*PlaylistPrivada playlistPrivada = new PlaylistPrivada();
+        playlistPrivada = gestionPlaylistPrivada.existePlaylist(4);
+        gestionPlaylistPrivada.agregarCancion(playlistPrivada);
+        */
+        Biblioteca biblioteca = new Biblioteca();
+        biblioteca.mostrarBibliotecaCliente(1);
 
 
     }
 
 }
+

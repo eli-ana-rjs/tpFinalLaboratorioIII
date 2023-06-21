@@ -28,28 +28,7 @@ public class PlaylistPrivada extends Playlist implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public int getIdPlaylist() {
-        return idPlaylist;
-    }
-
-    public void setIdPlaylist(int idPlaylist) {
-        this.idPlaylist = idPlaylist;
-    }
     //endregion
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PlaylistPrivada that = (PlaylistPrivada) o;
-        return idPlaylist == that.idPlaylist;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idPlaylist);
-    }
 
     @Override
     public String toString() {

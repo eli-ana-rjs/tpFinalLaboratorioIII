@@ -1,0 +1,49 @@
+[ {
+  "nombre" : "Playlist Publica 1",
+  "idPlaylist" : 1,
+  "listaCanciones" : [ {
+    "nombre" : "Too Many Tears",
+    "artista" : "Whitesnake",
+    "album" : "Restless Heart",
+    "duracion" : "5",
+    "comentarios" : "Clasico",
+    "genero" : "ROCK",
+    "idCancion" : 3,
+    "reproduciendo" : false
+  }, {
+    "nombre" : "Mic Drop",
+    "artista" : "BTS",
+    "album" : "Love Yourself: Her",
+    "duracion" : "4",
+    "comentarios" : "Buena para bailar",
+    "genero" : "KPOP",
+    "idCancion" : 1,
+    "reproduciendo" : false
+  } ]
+}, {
+  "nombre" : "Playlist Publica 2",
+  "idPlaylist" : 2,
+  "listaCanciones" : [ {
+    "nombre" : "A Place Where You Belong",
+    "artista" : "Bullet for my Valentine",
+    "album" : "Fever",
+    "duracion" : "5",
+    "comentarios" : "Muy buena",
+    "genero" : "METAL",
+    "idCancion" : 2,
+    "reproduciendo" : false
+  } ]
+}, {
+  "nombre" : "Playlist Publica 3",
+  "idPlaylist" : 3,
+  "listaCanciones" : [ {
+    "nombre" : "Es Epico",
+    "artista" : "Canserbero",
+    "album" : "Muerte",
+    "duracion" : "6",
+    "comentarios" : "Batalla final",
+    "genero" : "RAP",
+    "idCancion" : 6,
+    "reproduciendo" : false
+  } ]
+} ]

@@ -1,6 +1,24 @@
 [ {
   "nombre" : "Favoritos",
-  "idPlaylist" : 1,
-  "listaCanciones" : [ ],
-  "idCliente" : 1
+  "idPlaylist" : 4,
+  "listaCanciones" : [ {
+    "nombre" : "A Place Where You Belong",
+    "artista" : "Bullet for my Valentine",
+    "album" : "Fever",
+    "duracion" : "5",
+    "comentarios" : "Muy buena",
+    "genero" : "METAL",
+    "idCancion" : 2,
+    "reproduciendo" : false
+  }, {
+    "nombre" : "A Place Where You Belong",
+    "artista" : "Bullet for my Valentine",
+    "album" : "Fever",
+    "duracion" : "5",
+    "comentarios" : "Muy buena",
+    "genero" : "METAL",
+    "idCancion" : 2,
+    "reproduciendo" : false
+  } ],
+  "idCliente" : 2
 } ]
