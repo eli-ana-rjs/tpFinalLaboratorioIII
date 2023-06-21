@@ -17,7 +17,7 @@ public class PlaylistPrivada extends Playlist implements Serializable {
     }
 
     //endregion
-
+int
     //region Getters y Setters
 
     public int getIdCliente() {
