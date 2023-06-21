@@ -4,9 +4,19 @@ import org.utn.Menu.MenuAdmin;
 import org.utn.Menu.MenuCliente;
 
 import java.util.Scanner;
-
+/**
+ * Esta clase se encarga de dibujar el menu de login y de llamar a los metodos de la clase Login
+ * @author Eliana Rojas
+ * @version 1.0
+ * @see Login
+ */
 public class FormLogin {
 
+    /**
+     * Mientras el usuario no este logueado y le queden intentos, se solocita email y password
+     * Si se loguea cambia el atributo seLogue a true.
+     * Una vez que esta logueado se chequea su rol: admin, cliente free o cliente premium y se dibuja el menu que corresponda
+     */
     public static void dibujarMenu() {
 
         Login login = new Login();

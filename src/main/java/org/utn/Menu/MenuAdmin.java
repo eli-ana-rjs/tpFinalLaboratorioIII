@@ -5,9 +5,16 @@ import org.utn.Utilidades.Color;
 import java.util.Scanner;
 import static org.utn.Utilidades.Utilidades.dibujarRectanguloTexto;
 
-
+/**
+ * Esta clase se encarga de dibujar el menu de administrador y de llamar a los metodos de las clases que se encargan de la gestion de clientes, administradores y canciones
+ * @author Eliana Rojas
+ *
+ */
 public class MenuAdmin {
 
+    /**
+     * Muestra el menu principal del administrador y lo inicia
+     */
     public void iniciarMenuAdmin() {
 
         Scanner scanner = new Scanner(System.in);
@@ -48,6 +55,9 @@ public class MenuAdmin {
         scanner.close();
     }
 
+    /**
+     * Metodo que se encarga de mostrar las opciones del menu princiapal de un administrador
+     */
     public void mostrarMenuPrincipal() {
 
         String titulo = "Menu Principal";
@@ -61,6 +71,10 @@ public class MenuAdmin {
         System.out.print(Color.rojo + "Elige una opción: \n" + Color.b);
     }
 
+    /**
+     * Metodo que se encarga de mostrar las acciones que puede realizar el administrador en el submenu Gestion Clientes
+     * @param opcion  opcion elegida por el administrador
+     */
     public void mostrarSubMenuClientes(String opcion) {
 
         String titulo = " Submenú de " + opcion ;
@@ -77,6 +91,10 @@ public class MenuAdmin {
         System.out.print("Elige una opción: ");
     }
 
+    /**
+     * Metodo que se encarga de mostrar las acciones que puede realizar el administrador en el submenu Gestion Administrador
+     * @param opcion opcion elegida por el administrador
+     */
     public void mostrarSubMenuAdmin(String opcion){
 
         String titulo = " Submenú de " + opcion;
@@ -91,6 +109,10 @@ public class MenuAdmin {
 
     }
 
+    /**
+     * Metodo que se encarga de mostrar las acciones que puede realizar el administrador en el submenu Gestion Canciones
+     * @param opcion opcion elegida por el administrador
+     */
     public void mostrarSubMenuCanciones(String opcion){
 
         String titulo = " Submenú de " + opcion;
@@ -105,6 +127,10 @@ public class MenuAdmin {
 
     }
 
+    /**
+     * Metodo que se encarga de mostrar las opciones del submenu de Gestion Playlists Publicas
+     * @param opcion opcion elegida por el administrador
+     */
     public void mostrarSubMenuPlaylistPublica(String opcion){
         String titulo = "Submenu de " + opcion;
         dibujarRectanguloTexto(titulo);
@@ -115,6 +141,10 @@ public class MenuAdmin {
         System.out.println("4. Dar de baja una Playlist Publica");
     }
 
+    /**
+     * Este metodo se encarga de manejar las opciones del submenu de  gestionClientes
+     * @param opcionSubMenuClientes opcion elegida por el administrador
+     */
     public void manejarOpcionSubMenuClientes(int opcionSubMenuClientes) {
 
         GestionClientes gestionClientes = new GestionClientes();
@@ -156,6 +186,10 @@ public class MenuAdmin {
         }
     }
 
+    /**
+     * Este metodo se encarga de manejar las opciones del submenu de  gestionAdministradores
+     * @param opcionSubMenuAdministradores opcion elegida por el administrador
+     */
     public void manejarOpcionSubMenuAdministradores(int opcionSubMenuAdministradores) {
         GestionClientes gestionCliente = new GestionClientes();
         switch (opcionSubMenuAdministradores) {
@@ -177,6 +211,10 @@ public class MenuAdmin {
         }
     }
 
+    /**
+     *
+     * @param opcionSubMenuCanciones
+     */
     public void manejarOpcionSubMenuCanciones(int opcionSubMenuCanciones) {
 
         GestionCancion gestionCancion = new GestionCancion();
@@ -209,6 +247,11 @@ public class MenuAdmin {
     }
 
     // ver que cosas se hacen con las playlists
+
+    /**
+     *
+     * @param opcionSubMenuPlaylists
+     */
     public void manejarOpcionSubMenuPlaylists(int opcionSubMenuPlaylists){
 
         GestionPlaylistPublica gestionPlaylistPublica = new GestionPlaylistPublica();

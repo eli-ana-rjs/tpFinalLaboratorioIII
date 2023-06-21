@@ -7,6 +7,10 @@ import java.util.Scanner;
 
 import static org.utn.Utilidades.Utilidades.dibujarRectanguloTexto;
 
+/**
+ * Esta clase se encarga de dibujar el menu de un cliente dependiendo si es free o premium
+ * @author Eliana Rojas
+ */
 public class MenuCliente {
 
     GestionClientes gestionClientes = new GestionClientes();
