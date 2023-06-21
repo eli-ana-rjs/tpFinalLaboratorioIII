@@ -15,4 +15,18 @@ public enum TipoDePlan {
         this.cantidadDeUsuarios = cantidadDeUsuarios;
     }
 
+    // metodos
+
+    public int getPrecio(){
+        return this.precio;
+    }
+
+    public double getCantidadDeUsuarios(){
+        return this.cantidadDeUsuarios;
+    }
+
+    public void mostrarInformacionPlan(){
+        System.out.println("El plan " + this.name() + " tiene un precio de $" + this.precio + " y permite " + this.cantidadDeUsuarios + " usuarios");
+    }
+
 }

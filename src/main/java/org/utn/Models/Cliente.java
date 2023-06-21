@@ -27,6 +27,17 @@ public class Cliente extends Usuario implements Serializable {
         super();
     }
 
+    // no me borren este constructor
+    public Cliente(String nombre, String apellido, String email,
+                   String password,
+                   Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan, String fechaNacimiento) {
+        super(nombre, apellido, email, password);
+        this.genero = genero;
+        this.domicilio = domicilio;
+        this.premium = premium;
+        this.tipoDePlan = tipoDePlan;
+        this.fechaNacimiento = fechaNacimiento;
+    }
 
     public Cliente(String nombre, String apellido, String email, String password, int id,
                    Genero genero, String domicilio, boolean premium, TipoDePlan tipoDePlan, String fechaNacimiento) {
