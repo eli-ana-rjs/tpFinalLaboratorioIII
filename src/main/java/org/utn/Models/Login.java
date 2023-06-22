@@ -8,9 +8,14 @@ import java.io.Serializable;
  */
 public class Login {
 
+    /**
+     * Variable estática que contiene el usuario logueado
+     */
     private static Cliente logueado = null;
 
-
+    /**
+     * Constante que indica la Cantidad de intentos restantes para loguearse
+     */
     private int intentosRestantes;
 
     GestionClientes gestionClientes = new GestionClientes();
@@ -24,7 +29,7 @@ public class Login {
     }
 
     /**
-     * Metodo que chequea si el usuario tiene intentos restantes
+     * Método que chequea si el usuario tiene intentos restantes
      * @return true si tiene intentos restantes, false si no
      */
     public boolean tieneIntentosRestantes() {

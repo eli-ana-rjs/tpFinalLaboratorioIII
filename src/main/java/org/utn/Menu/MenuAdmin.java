@@ -20,7 +20,7 @@ public class MenuAdmin {
         Scanner scanner = new Scanner(System.in);
         int opcion = 0;
 
-        while (opcion != 4) {
+        while (opcion != 3) {
             mostrarMenuPrincipal();
             opcion = scanner.nextInt();
 
@@ -86,8 +86,6 @@ public class MenuAdmin {
         System.out.print("Elige una opción: ");
     }
 
-
-
     /**
      * Metodo que se encarga de mostrar las acciones que puede realizar el administrador en el submenu Gestion Canciones
      * @param opcion opcion elegida por el administrador
@@ -106,19 +104,6 @@ public class MenuAdmin {
 
     }
 
-    /**
-     * Metodo que se encarga de mostrar las opciones del submenu de Gestion Playlists Publicas
-     * @param opcion opcion elegida por el administrador
-     */
-    public void mostrarSubMenuPlaylistPublica(String opcion){
-        String titulo = "Submenu de " + opcion;
-        dibujarRectanguloTexto(titulo);
-
-        System.out.println("1. Crear playlist Publica");
-        System.out.println("2. Mostrar Playlists Publicas");
-        System.out.println("3. Modificar una Playlist Publica");
-        System.out.println("4. Dar de baja una Playlist Publica");
-    }
 
     /**
      * Este metodo se encarga de manejar las opciones del submenu de  gestionClientes
@@ -160,17 +145,21 @@ public class MenuAdmin {
 
                 gestionClientes.listarClientesPremium();
                 break;
+            case 7:
+                gestionClientes.listarAdministradores();
+                break;
+            case 8:
+                System.out.println("Volviendo al menu principal...");
+                break;
             default:
                 System.out.println("Opción inválida. Introduce un número válido.");
                 break;
         }
     }
 
-
-
     /**
-     *
-     * @param opcionSubMenuCanciones
+     * Este metodo se encarga de manejar las opciones del submenu de  gestionCanciones
+     * @param opcionSubMenuCanciones opcion elegida por el administrador
      */
     public void manejarOpcionSubMenuCanciones(int opcionSubMenuCanciones) {
 
@@ -199,40 +188,14 @@ public class MenuAdmin {
 
                 gestionCancion.mostrarTodas();
                 break;
-            default:
-                System.out.println("Opción inválida. Introduce un número válido.");
-                break;
-        }
-    }
-
-    // ver que cosas se hacen con las playlists
-
-    /**
-     *
-     * @param opcionSubMenuPlaylists
-     */
-    public void manejarOpcionSubMenuPlaylists(int opcionSubMenuPlaylists){
-
-        GestionPlaylistPublica gestionPlaylistPublica = new GestionPlaylistPublica();
-        PlaylistPublica playlistPublica = new PlaylistPublica();
-
-        switch (opcionSubMenuPlaylists) {
-            case 1:
-                System.out.println("Crear Playlist Publica...");
-
-                break;
-            case 2:
-
-                break;
-            case 3:
-
-                break;
-            case 4:
-
+            case 5:
+                System.out.println("Volviendo al menu principal...");
                 break;
             default:
                 System.out.println("Opción inválida. Introduce un número válido.");
                 break;
         }
     }
+
+
 }

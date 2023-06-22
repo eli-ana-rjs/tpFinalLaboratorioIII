@@ -141,4 +141,17 @@
   "premium" : true,
   "tipoDePlan" : "DUO",
   "fechaNacimiento" : null
+}, {
+  "nombre" : "Eliana",
+  "apellido" : "Rojas",
+  "email" : "eliana.rojas@yahoo.com",
+  "password" : "eli345",
+  "admin" : false,
+  "id" : 12,
+  "usuarioActivo" : true,
+  "genero" : "FEMENINO",
+  "domicilio" : "Marconi 3752",
+  "premium" : true,
+  "tipoDePlan" : "INDIVIDUAL",
+  "fechaNacimiento" : "22/05/1980"
 } ]

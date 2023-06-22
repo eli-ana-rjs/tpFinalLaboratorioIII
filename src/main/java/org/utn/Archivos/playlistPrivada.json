@@ -41,4 +41,18 @@
     "reproduciendo" : true
   } ],
   "idCliente" : 11
+}, {
+  "nombre" : "Nacional",
+  "idPlaylist" : 10,
+  "listaCanciones" : [ {
+    "nombre" : "Profugos",
+    "artista" : "Soda Stereo",
+    "album" : "Signos",
+    "duracion" : "5:21",
+    "comentarios" : "Clasico",
+    "genero" : "ROCK",
+    "idCancion" : 10,
+    "reproduciendo" : false
+  } ],
+  "idCliente" : 12
 } ]

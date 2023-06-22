@@ -1,9 +1,17 @@
 package org.utn.Utilidades;
 
+/**
+ * Esta clase se encarga de darle color a los textos que se muestran por pantalla
+ * @autor Eliana Rojas
+ */
 public class Color {
 
-    // Color de texto
-    public static final String  b = "\u001B[0m"; //borrar
+    /**
+     * Atributos estaticos que contienen un Color de texto
+     * Ejmeplo de uso
+     * System.out.println( Color.amarillo + "Hola mundo!");
+     */
+
     public static final String negro = "\033[30m";
     public static final String rojo = "\033[31m";
     public static final String verde = "\033[32m";
@@ -13,7 +21,16 @@ public class Color {
     public static final String celeste = "\033[36m";
     public static final  String blanco = "\033[37m";
 
-    // Fondos
+    /**
+     * Atributo estatico que borra un color para que lo que siga a continuacion no se pinte del color anterior
+     * Borra un color
+     */
+    public static final String  b = "\u001B[0m";
+
+    /**
+     * Pinta el fondo String del color indicado - Resaltado
+     * Fondos
+     */
     public static final String fRojo = "\033[41m";
     public static final String fVerde = "\033[42m";
     public static final String fAmarillo = "\033[43m";
@@ -22,7 +39,5 @@ public class Color {
     public static final  String fCeleste = "\033[46m";
     public static final  String fGris = "\033[47m";
 
-    // Ejmeplo de uso
-    // System.out.println( Color.amarillo + "Hola mundo!");
 
 }
