@@ -1,8 +1,5 @@
 package org.utn.Models;
 
-import org.utn.Excepciones.InvalidDateFormatException;
-import org.utn.Excepciones.InvalidEmailException;
-import org.utn.Excepciones.InvalidPasswordException;
 import org.utn.Repositorios.ClienteRepo;
 
 import java.util.InputMismatchException;
@@ -386,13 +383,50 @@ public class GestionClientes {
     }
 
     public void cambiarPlan(Cliente cliente) {
+
         if (!cliente.isPremium()) {
+
+            Scanner scanner = new Scanner(System.in);
+            TipoDePlan tipoPlan;
+            int opcion;
+
             cliente.setPremium(true);
+            System.out.println("Seleccione un Tipo de Plan ---> 1.INDIVIDUAL, 2.DUO, 3. FAMILIAR : ");
+            TipoDePlan.INDIVIDUAL.mostrarInformacionPlan();
+            TipoDePlan.DUO.mostrarInformacionPlan();
+            TipoDePlan.FAMILIAR.mostrarInformacionPlan();
+
+            do {
+                System.out.print("Ingrese el número de opción: ");
+                opcion = scanner.nextInt();
+
+                if ((opcion < 1 || opcion > 3)) {
+                    System.out.println("Opción inválida. Intente nuevamente.");
+                }
+            } while (opcion < 1 || opcion > 3);
+
+            switch (opcion) {
+                case 1:
+                    tipoPlan = TipoDePlan.DUO;
+                    cliente.setTipoDePlan(tipoPlan);
+                    break;
+                case 2:
+                    tipoPlan = TipoDePlan.INDIVIDUAL;
+                    cliente.setTipoDePlan(tipoPlan);
+                    break;
+                case 3:
+                    tipoPlan = TipoDePlan.FAMILIAR;
+                    cliente.setTipoDePlan(tipoPlan);
+                    break;
+            }
             System.out.println("El cliente " + cliente.getNombre() + " ahora es premium");
         } else {
             cliente.setPremium(false);
+            cliente.setTipoDePlan(TipoDePlan.GRATIS);
             System.out.println("El cliente " + cliente.getNombre() + " ahora es free");
         }
+
+       clienteRepo.modificar(cliente);
     }
 
 

@@ -9,36 +9,36 @@ import java.util.Objects;
 public class Cancion implements Serializable {
 
     /**
-     * Constante PI
+     * Constante nombre
      */
     private String nombre;
     /**
-     * Constante PI
+     * Constante artista
      */
     private String artista;
     /**
-     * Constante PI
+     * Constante album
      */
     private String album;
     /**
-     * Constante PI
+     * Constante duracion
      */
     private String duracion;
     /**
-     * Constante PI
+     * Constante comentarios
      */
     private String comentarios;
     /**
-     * Constante PI
+     * Constante genero
      */
     private GeneroCancion genero;
     /**
-     * Constante PI
+     * Constante idCancion
      */
     private int idCancion;
 
     /**
-     * Constante PI
+     * Constante reproduciendo
      */
     private boolean reproduciendo = false;
 

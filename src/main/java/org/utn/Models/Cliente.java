@@ -11,15 +11,8 @@ public class Cliente extends Usuario implements Serializable {
     private TipoDePlan tipoDePlan;
     private String fechaNacimiento;
 
-    //protected Biblioteca biblioteca; // arreglo de ids de playlists
 
     //endregion
-
-
-    //protected Biblioteca biblioteca;
-
-   // private ArrayList<Cancion> misCanciones = new ArrayList<Cancion>();
-   // private ArrayList<Playlist> miPlaylist = new ArrayList<Playlist>();
 
 
     //region Constructor
@@ -115,10 +108,6 @@ public class Cliente extends Usuario implements Serializable {
         sb.append(", tipoDePlan=").append(tipoDePlan);
 
         sb.append(", isAdmin=").append(admin);
-
-        //sb.append(", biblioteca=").append(biblioteca);
-       // sb.append(", misCanciones=").append(misCanciones);
-        //sb.append(", miPlaylist=").append(miPlaylist);
 
 
         sb.append('}');

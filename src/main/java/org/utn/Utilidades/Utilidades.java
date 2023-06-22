@@ -22,4 +22,11 @@ public class Utilidades {
         System.out.println();
     }
 
+    /**
+     * Imprime linea de separacion
+     */
+    public static void imprimirLineas(){
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    }
+
 }

@@ -1,7 +1,8 @@
 package org.utn.Models;
 import org.utn.Repositorios.CancionRepo;
+import org.utn.Utilidades.Utilidades;
+
 import java.util.List;
-import java.util.MissingFormatArgumentException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -13,15 +14,15 @@ import static org.utn.Utilidades.Utilidades.dibujarRectanguloTexto;
  */
 public class GestionCancion {
     /**
-     * Constante PI
+     * Constante repo
      */
     CancionRepo repo = new CancionRepo();
     /**
-     * Constante PI
+     * Constante scan
      */
     Scanner scan = new Scanner(System.in);
     /**
-     * Constante PI
+     * Constante scanString
      */
     Scanner scanString = new Scanner(System.in);
 
@@ -60,18 +61,20 @@ public class GestionCancion {
      */
     public void switchBusquedaCanciones() {
         Scanner scanString = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         String datoIngresado;
-        int eleccion;
+        int eleccion = 0;
         boolean encontrar = false;
         Cancion cancionBuscada = new Cancion();
 
         dibujarRectanguloTexto("Busqueda de canciones");
-        imprimirLineas();
+        Utilidades.imprimirLineas();
         System.out.println("1- Nombre");
         System.out.println("2- Album");
         System.out.println("3- Artista");
         System.out.println("4- Genero");
-        imprimirLineas();
+        Utilidades.imprimirLineas();
+        //scan.reset();
         eleccion = scan.nextInt();
 
         switch (eleccion) {
@@ -323,9 +326,9 @@ public class GestionCancion {
         int salir, ultimoID, eleccion;
         Cancion nuevaCancion = new Cancion();
         dibujarRectanguloTexto("Biblioteca de canciones");
-        imprimirLineas();
+        Utilidades.imprimirLineas();
         mostrarTodas();
-        imprimirLineas();
+        Utilidades.imprimirLineas();
 
         try {
             do {
@@ -370,12 +373,8 @@ public class GestionCancion {
 
         } catch (InputMismatchException e) {
 
-            System.out.println("Ingrese un dato correcto");    //volver menu ppal
+            System.out.println("Ingrese un dato correcto");
 
-        } finally {
-
-            scan.close();
-            scanString.close();
         }
 
     }
@@ -388,6 +387,7 @@ public class GestionCancion {
     public void eliminarCancion(Cancion c) {
 
         repo.eliminar(c);
+        System.out.println("Cancion eliminada!");
     }
 
     /**
@@ -470,8 +470,7 @@ public class GestionCancion {
             }
         } while (salir != 0);
 
-        scan.close();
-        scanString.close();
+
     }
 
     /**
@@ -605,11 +604,10 @@ public class GestionCancion {
 
     }
 
-    public void MenuReproduccionPlaylist(int idPlaylist){
+    public void menuReproduccionPlaylistPrivada(int idPlaylist){
+
         GestionPlaylistPrivada gestionPlaylistPrivada = new GestionPlaylistPrivada();
-        GestionPlaylistPublica gestionPlaylistPublica = new GestionPlaylistPublica();
         PlaylistPrivada playlistPrivada = new PlaylistPrivada();
-        PlaylistPublica playlistPublica = new PlaylistPublica();
 
         String opcion;
         int eleccion = 0;
@@ -650,12 +648,9 @@ public class GestionCancion {
                 switch (busqueda) {
 
                     case 1:
-                        playlistPrivada = gestionPlaylistPrivada.existePlaylist(idPlaylist); //lo mismo para play publica
-                        //playlistPublica = gestionPlaylistPublica.existePlaylist(idPlaylist); //
+                        playlistPrivada = gestionPlaylistPrivada.existePlaylist(idPlaylist);
                         if(playlistPrivada != null){
                             gestionPlaylistPrivada.verCanciones(playlistPrivada);
-                        } else if (playlistPublica != null) {
-                            //gestionPlaylistPublica.verCanciones(playlistPublica);
                         }
                         cancionNoReproducir = cancionReproducida;
                         seteoReproduciendo(cancionNoReproducir);
@@ -716,12 +711,7 @@ public class GestionCancion {
         return null;
     }
 
-    /**
-     * Imprime linea de separacion
-     */
-    public void imprimirLineas(){
-        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-    }
+
 
 
 //endregion

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Esta clase se encarga de manejar el login de los usuarios
  * @author Eliana Rojas
  */
-public class Login implements Serializable {
+public class Login {
 
     private static Cliente logueado = null;
 

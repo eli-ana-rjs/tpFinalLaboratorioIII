@@ -81,7 +81,7 @@
   "apellido" : "Alfonso",
   "email" : "jacinto61@hotmail.com",
   "password" : "234dfg",
-  "admin" : false,
+  "admin" : true,
   "id" : 7,
   "usuarioActivo" : true,
   "genero" : "MASCULINO",
@@ -112,8 +112,8 @@
   "usuarioActivo" : true,
   "genero" : "MASCULINO",
   "domicilio" : "Corrientes 2340",
-  "premium" : true,
-  "tipoDePlan" : "FAMILIAR",
+  "premium" : false,
+  "tipoDePlan" : "GRATIS",
   "fechaNacimiento" : "08/11/1978"
 }, {
   "nombre" : "Marta",
@@ -128,4 +128,17 @@
   "premium" : false,
   "tipoDePlan" : "GRATIS",
   "fechaNacimiento" : "22/09/1965"
+}, {
+  "nombre" : "Matias",
+  "apellido" : "Siano",
+  "email" : "matias.siano@gmail.com",
+  "password" : "wer8675",
+  "admin" : false,
+  "id" : 11,
+  "usuarioActivo" : true,
+  "genero" : "MASCULINO",
+  "domicilio" : "",
+  "premium" : true,
+  "tipoDePlan" : "DUO",
+  "fechaNacimiento" : null
 } ]
