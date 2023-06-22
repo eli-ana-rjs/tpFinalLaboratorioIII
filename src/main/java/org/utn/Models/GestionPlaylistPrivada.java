@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class GestionPlaylistPrivada{
     private PlaylistPrivadaRepo repoPlaylistPriv = new PlaylistPrivadaRepo();
-    //PlaylistPrivada playlistPrivada = new PlaylistPrivada();
+
     //region Constructor
     public GestionPlaylistPrivada() {
     }
@@ -27,7 +27,6 @@ public class GestionPlaylistPrivada{
         playlistPrivada.setIdPlaylist(++ultimoID);
         repoPlaylistPriv.agregar(playlistPrivada);
         System.out.println("Playlist creada con exito!");
-        scanner.reset();
         scanner.close();
     }
 
@@ -129,10 +128,23 @@ public class GestionPlaylistPrivada{
     public int buscarUltimoID(){
         List<PlaylistPrivada> playlistPrivadas = new ArrayList<>();
         playlistPrivadas = repoPlaylistPriv.listar();
-        int ultimoID = 0;
+        int ultimoID = 3;
         for (PlaylistPrivada playlistPriv : playlistPrivadas){
             ultimoID = playlistPriv.getIdPlaylist();
         }
         return ultimoID;
+    }
+
+    //Eliminar una playlist
+    public void eliminarPlaylist (int idPlaylist){
+        PlaylistPrivada playlistPrivada = new PlaylistPrivada();
+        playlistPrivada = existePlaylist(idPlaylist);
+        System.out.println(playlistPrivada);
+        if (playlistPrivada != null){
+            repoPlaylistPriv.eliminar(playlistPrivada);
+            System.out.println("Playlist eliminada con exito");
+        } else {
+            System.out.println("Ingrese un ID valido");
+        }
     }
 }
