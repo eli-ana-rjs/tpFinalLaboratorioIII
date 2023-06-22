@@ -2,6 +2,7 @@ package org.utn.Models;
 
 import org.utn.Repositorios.PlaylistPrivadaRepo;
 import org.utn.Repositorios.PlaylistPublicaRepo;
+import org.utn.Utilidades.Color;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -21,13 +22,13 @@ public class Biblioteca {
         GestionClientes gestionClientes = new GestionClientes();
         Cliente cliente = new Cliente();
         cliente = gestionClientes.buscarClienteId(idCliente);
-        System.out.println("Playlist Publicas");
+        System.out.println(Color.celeste + "Playlist Publicas");
         for (PlaylistPublica playlistPublica : playlistPublicas) {
             System.out.println(playlistPublica);
         }
 
         if (cliente.isPremium()) {
-            System.out.println("Playlist Privadas");
+            System.out.println(Color.celeste + "Playlist Privadas");
             for (PlaylistPrivada playlistPrivada : playlistPrivadas) {
                 if (playlistPrivada.getIdCliente() == idCliente) {
                     System.out.println(playlistPrivada);

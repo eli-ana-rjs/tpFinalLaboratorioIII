@@ -1,10 +1,18 @@
 package org.utn.Repositorios;
 import java.util.List;
 
+/**
+ * Esta interfaz generica se encarga de definir los metodos que deben implementar las clases que la implementen
+ * ABML
+ * @author  Eliana Rojas
+ * @author Milagros Pecar
+ * @author Agostina Cardinali
+ * @author Matias Siano
+ */
+
 public interface IRepository<T> {
 
     List<T> listar();
-    // Acciones
 
     boolean buscar(T objeto);
     void modificar(T objeto);
@@ -13,8 +21,5 @@ public interface IRepository<T> {
 
     void cargar();
     void guardar();
-    // analizar que conviene? Pasar el id o el objeto
-
-
 
 }
