@@ -3,6 +3,7 @@ package org.utn.Models;
 import org.utn.Repositorios.PlaylistPrivadaRepo;
 import org.utn.Repositorios.PlaylistPublicaRepo;
 import org.utn.Utilidades.Color;
+import org.utn.Utilidades.Utilidades;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,10 +12,17 @@ import java.util.Scanner;
 
 public class Biblioteca {
 
-    //Muestra las playlist publicas y las privadas del cliente
+
+    /**
+     * Este metodo muestra la biblioteca del cliente (playlist publicas y privadas si fuese un usuario Premium)
+     *
+     * @param idCliente
+     * @author Agostina Cardinali
+     */
     public void mostrarBibliotecaCliente(int idCliente) {
         PlaylistPrivadaRepo playlistPrivadaRepo = new PlaylistPrivadaRepo();
         PlaylistPublicaRepo playlistPublicaRepo = new PlaylistPublicaRepo();
+        Utilidades utilidades = new Utilidades();
         List<PlaylistPrivada> playlistPrivadas = new ArrayList<>();
         playlistPrivadas = playlistPrivadaRepo.listar();
         List<PlaylistPublica> playlistPublicas = new ArrayList<>();
@@ -22,22 +30,30 @@ public class Biblioteca {
         GestionClientes gestionClientes = new GestionClientes();
         Cliente cliente = new Cliente();
         cliente = gestionClientes.buscarClienteId(idCliente);
-        System.out.println(Color.celeste + "Playlist Publicas");
+        String titulo = "Playlists Publicas";
+        utilidades.dibujarRectanguloTexto(Color.celeste + titulo + Color.b);
         for (PlaylistPublica playlistPublica : playlistPublicas) {
             System.out.println(playlistPublica);
+            utilidades.imprimirLineas();
         }
-
         if (cliente.isPremium()) {
-            System.out.println(Color.celeste + "Playlist Privadas");
+            titulo = "Playlists Privadas";
+            utilidades.dibujarRectanguloTexto(Color.celeste + titulo + Color.b);
             for (PlaylistPrivada playlistPrivada : playlistPrivadas) {
                 if (playlistPrivada.getIdCliente() == idCliente) {
                     System.out.println(playlistPrivada);
+                    utilidades.imprimirLineas();
                 }
             }
         }
     }
 
-    //Menu ingreso a playlist usuario Free
+    /**
+     * Este metodo es el menu de ingreso a las playlist publicas para un usuario Free
+     *
+     * @param idCliente
+     * @author Agostina Cardinali
+     */
     public void ingresoPlaylistUsuarioFree(int idCliente) {
         Scanner scanner = new Scanner(System.in);
         GestionPlaylistPublica gestionPlaylistPublica = new GestionPlaylistPublica();
@@ -63,9 +79,12 @@ public class Biblioteca {
         }
     }
 
-    //Menu de ingreso a Playlist usuario Premium
-
-    public void eliminarDesdeBiblioteca(){
+    /**
+     * Este metodo elimina una playlist privada de un usuario Premiun a partir del ID de la playlist
+     *
+     * @author Agostina Cardinali
+     */
+    public void eliminarDesdeBiblioteca() {
 
         Scanner scanner = new Scanner(System.in);
         GestionPlaylistPrivada gestionPlaylistPrivada = new GestionPlaylistPrivada();
@@ -78,20 +97,25 @@ public class Biblioteca {
         } catch (InputMismatchException e) {
             e.getMessage();
         }
-        if (idPlaylist <= 3){
+        if (idPlaylist <= 3) {
             System.out.println("Ingrese un ID de una playlist propia");
         } else {
             gestionPlaylistPrivada.eliminarPlaylist(idPlaylist);
         }
     }
 
-    public void escucharDesdeBiblioteca(){
+    /**
+     * Este metodo reproduce una cancion de una playlist publica o privada
+     *
+     * @author Agostina Cardinali
+     */
+    public void escucharDesdeBiblioteca() {
 
         Scanner scanner = new Scanner(System.in);
         GestionPlaylistPrivada gestionPlaylistPrivada = new GestionPlaylistPrivada();
         GestionPlaylistPublica gestionPlaylistPublica = new GestionPlaylistPublica();
         int idPlaylist = 0;
-        Playlist playlistActiva ;
+        Playlist playlistActiva;
 
         System.out.println("Ingrese ID de la playlist que desea escuchar");
         try {
@@ -115,14 +139,26 @@ public class Biblioteca {
         }
     }
 
-    public PlaylistPrivada crearPlaylistDesdeBiblioteca(int idCliente){
+    /**
+     * Este metodo llama al metodo para crear una playlist privada que se encuentra en Gestion
+     *
+     * @param idCliente
+     * @return PlaylistPrivada
+     * @author Agostina Cardinali
+     */
+    public PlaylistPrivada crearPlaylistDesdeBiblioteca(int idCliente) {
         GestionPlaylistPrivada gestionPlaylistPrivada = new GestionPlaylistPrivada();
         PlaylistPrivada playlistPrivada = gestionPlaylistPrivada.crearPlaylist(idCliente);
 
         return playlistPrivada;
     }
 
-    //Menu usuario Premium cuando ya ingreso a una playlist privada
+    /**
+     * Este metodo es el menu para un usuario Premiun cuando ya esta dentro de una playlist
+     *
+     * @param playlistPrivActiva
+     * @author Agostina Cardinali
+     */
     public void menuPlaylistPrivada(PlaylistPrivada playlistPrivActiva) {
         Scanner scanner = new Scanner(System.in);
         GestionPlaylistPrivada gestionPlaylistPriv = new GestionPlaylistPrivada();
@@ -134,10 +170,9 @@ public class Biblioteca {
         opcion = scanner.nextInt();
         switch (opcion) {
             case 1: //escuchar cancion
-               GestionCancion gestionCancion = new GestionCancion();
-
-
-               gestionCancion.menuReproduccionPlaylistPrivada(playlistPrivActiva.getIdPlaylist());
+                GestionCancion gestionCancion = new GestionCancion();
+                gestionCancion.menuReproduccionPlaylistPrivada(playlistPrivActiva);
+                //gestionCancion.menuReproduccionPlaylistPrivada(playlistPrivActiva.getIdPlaylist());
                 break;
             case 2:
                 gestionPlaylistPriv.agregarCancion(playlistPrivActiva);
@@ -148,10 +183,13 @@ public class Biblioteca {
         }
     }
 
-    //Menu usuarios Free y Premium que accedieron a una playlist Publica
+    /**
+     * Este metodo es el menu para usuario Premiun y Free que acceden a una playlist Publica
+     *
+     * @param playlistPubActiva
+     */
     public void menuPlaylistPublica(PlaylistPublica playlistPubActiva) {
         GestionCancion gestionCancion = new GestionCancion();
-
-        gestionCancion.menuReproduccionPlaylistPrivada(playlistPubActiva.getIdPlaylist()); // revisar
+        gestionCancion.menuReproduccionPlaylistPublica(playlistPubActiva);
     }
 }

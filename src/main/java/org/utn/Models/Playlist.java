@@ -1,4 +1,5 @@
 package org.utn.Models;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,9 +10,6 @@ public abstract class Playlist {
      * Atributos de la clase Playlist
      */
 
-    /**
-     *
-     */
     protected String nombre;
 
     /**
@@ -34,8 +32,9 @@ public abstract class Playlist {
 
     /**
      * Constructor con parametros
-     * @param nombre de la playlist
-     * @param idPlaylist de la playlist
+     *
+     * @param nombre         de la playlist
+     * @param idPlaylist     de la playlist
      * @param listaCanciones de la playlist
      */
     public Playlist(String nombre, int idPlaylist, List<Cancion> listaCanciones) {
@@ -50,6 +49,7 @@ public abstract class Playlist {
 
     /**
      * Devuelve el id de la playlist
+     *
      * @return id de la playlist
      */
     public int getIdPlaylist() {
@@ -58,6 +58,7 @@ public abstract class Playlist {
 
     /**
      * Setea el id de la playlist
+     *
      * @param idPlaylist
      */
     public void setIdPlaylist(int idPlaylist) {
@@ -66,6 +67,7 @@ public abstract class Playlist {
 
     /**
      * Devuelve el nombre de la playlist
+     *
      * @return nombre de la playlist
      */
     public String getNombre() {
@@ -74,6 +76,7 @@ public abstract class Playlist {
 
     /**
      * Setea el nombre de la playlist
+     *
      * @param nombre de la playlist
      */
     public void setNombre(String nombre) {
@@ -82,6 +85,7 @@ public abstract class Playlist {
 
     /**
      * Devuelve la lista de canciones de la playlist
+     *
      * @return lista de canciones de la playlist
      */
     public List<Cancion> getListaCanciones() {
@@ -90,6 +94,7 @@ public abstract class Playlist {
 
     /**
      * Setea la lista de canciones de la playlist
+     *
      * @param listaCanciones de la playlist
      */
     public void setListaCanciones(List<Cancion> listaCanciones) {
@@ -102,15 +107,17 @@ public abstract class Playlist {
 
     /**
      * Devuelve un String con el nombre de la playlist, el id y la lista de canciones
+     *
      * @return String con el nombre de la playlist, el id y la lista de canciones
      */
     @Override
     public String toString() {
-        return "Playlist: " + nombre + "\t| ID: " +idPlaylist +"\nCanciones:" + listaCanciones;
+        return "Playlist: " + nombre + "\t| ID: " + idPlaylist + "\nCanciones:" + listaCanciones;
     }
 
     /**
      * Compara si dos objetos son iguales en funcion de su id
+     *
      * @param o objeto a comparar
      * @return true si son iguales, false si no lo son
      */
@@ -124,6 +131,7 @@ public abstract class Playlist {
 
     /**
      * Devuelve el hashcode de la playlist
+     *
      * @return hashcode de la playlist
      */
     @Override
