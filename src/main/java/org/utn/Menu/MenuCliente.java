@@ -14,12 +14,13 @@ import static org.utn.Utilidades.Utilidades.dibujarRectanguloTexto;
 public class MenuCliente {
 
     GestionClientes gestionClientes = new GestionClientes();
+    GestionPlaylistPrivada gestionPlaylistPrivada = new GestionPlaylistPrivada();
+    GestionCancion gestionCancion = new GestionCancion();
+
     TipoDePlan tipoPlan;
 
     Biblioteca biblioteca = new Biblioteca();
 
-    Cliente clienteLogueado = Login.getLogueado();
-    int idClienteActual = clienteLogueado.getId();
 
     public void iniciarMenuClienteFree() {
 
@@ -27,59 +28,42 @@ public class MenuCliente {
         int opcion = 0;
 
         while (opcion != 4) {
+
+
             mostrarMenuClienteFree();
             opcion = scanner.nextInt();
 
-
+            Cliente clienteLogueado = Login.getLogueado();
+            int idClienteActual = clienteLogueado.getId();
 
             switch (opcion) {
                 case 1:
 
                     System.out.println("Mis playlist");
 
-                    System.out.println("idClienteActual = " + idClienteActual);
+
+
                     biblioteca.mostrarBibliotecaCliente(idClienteActual);
 
                     break;
                 case 2:
 
-                    // Seleccionar una lista publica
+                    //Cliente clienteLogueado2 = Login.getLogueado();
+                   //int idClienteActual2 = clienteLogueado2.getId();
+
+                    biblioteca.mostrarBibliotecaCliente(idClienteActual);
+                    biblioteca.ingresoPlaylistUsuarioFree(idClienteActual);
+
 
                     break;
                 case 3:
 
-                    Cliente cliente = gestionClientes.buscarClienteId(clienteLogueado.getId());
+                    //Cliente clienteLogueado3 = Login.getLogueado();
+                   // int idClienteActual3 = clienteLogueado3.getId();
+                    Cliente cliente = gestionClientes.buscarClienteId(idClienteActual);
+
                     gestionClientes.cambiarPlan(cliente);
-
-                    System.out.println("Seleccione un Tipo de Plan ---> 1.INDIVIDUAL, 2.DUO, 3. FAMILIAR : ");
-                    TipoDePlan.INDIVIDUAL.mostrarInformacionPlan();
-                    TipoDePlan.DUO.mostrarInformacionPlan();
-                    TipoDePlan.FAMILIAR.mostrarInformacionPlan();
-
-                    do {
-                        System.out.print("Ingrese el número de opción: ");
-                        opcion = scanner.nextInt();
-
-                        if ((opcion < 1 || opcion > 3)) {
-                            System.out.println("Opción inválida. Intente nuevamente.");
-                        }
-                    } while (opcion < 1 || opcion > 3);
-
-                    switch (opcion) {
-                        case 1:
-                            tipoPlan = TipoDePlan.DUO;
-                            cliente.setTipoDePlan(tipoPlan);
-                            break;
-                        case 2:
-                            tipoPlan = TipoDePlan.INDIVIDUAL;
-                            cliente.setTipoDePlan(tipoPlan);
-                            break;
-                        case 3:
-                            tipoPlan = TipoDePlan.FAMILIAR;
-                            cliente.setTipoDePlan(tipoPlan);
-                            break;
-                    }
-
+                    FormLogin.dibujarMenu();
                     break;
                 case 4:
                     System.out.println("Saliendo del programa...");
@@ -95,7 +79,7 @@ public class MenuCliente {
 
     public void mostrarMenuClienteFree() {
 
-        String titulo = "Bienvenido a Spoti-J";
+        String titulo = "Bienvenido a Spoti-J - Free";
         dibujarRectanguloTexto(titulo);
 
         System.out.println(Color.azul + "1. Ver mis Playlists");
@@ -107,35 +91,61 @@ public class MenuCliente {
 
     public void iniciarMenuClientePremium() {
 
+
+
         Scanner scanner = new Scanner(System.in);
         int opcion = 0;
 
         while (opcion != 4) {
             mostrarMenuClientePremium();
+            Cliente clienteLogueado = Login.getLogueado();
+            int idClienteActual = clienteLogueado.getId();
             opcion = scanner.nextInt();
-
             switch (opcion) {
                 case 1:
+
+
+
 
                     biblioteca.mostrarBibliotecaCliente(idClienteActual);
 
                     break;
                 case 2:
 
-                    //pasos para permirle crear una playlist
+                   // Cliente clienteLogueado2 = Login.getLogueado();
+                   // int idClienteActual = clienteLogueado.getId();
 
+                    PlaylistPrivada playlist =  biblioteca.crearPlaylistDesdeBiblioteca(idClienteActual);
+
+                    gestionCancion.switchBusquedaCanciones();
+
+                    // necesito saber que cancion voy a agregar y a que playlist la agrego
+
+                    gestionPlaylistPrivada.agregarCancion(playlist);
+
+                    biblioteca.mostrarBibliotecaCliente(idClienteActual);
                     break;
                 case 3:
 
-                    // seleccionar una playlist y escucharla
+                  //  Cliente clienteLogueado3 = Login.getLogueado();
+                  //  int idClienteActual3 = clienteLogueado3.getId();
+                    biblioteca.mostrarBibliotecaCliente(idClienteActual);
+                    biblioteca.escucharDesdeBiblioteca();
+
+
                     break;
                 case 4:
-
-                   // Cliente cliente = gestionClientes.buscarClienteId(idLogueado);
-                   // gestionClientes.cambiarPlan(cliente);
+                    biblioteca.eliminarDesdeBiblioteca();
 
                     break;
                 case 5:
+                    System.out.println("Cambiar a plan free");
+                     Cliente cliente = gestionClientes.buscarClienteId(idClienteActual);
+                     gestionClientes.cambiarPlan(cliente);
+                    FormLogin.dibujarMenu();
+
+                    break;
+                case 6:
                     System.out.println("Saliendo del programa...");
                     break;
                 default:
@@ -153,10 +163,11 @@ public class MenuCliente {
         dibujarRectanguloTexto(titulo);
 
         System.out.println(Color.azul + "1. Ver mis playlist");
-        System.out.println("2. Crear una playlist");
-        System.out.println("3. Seleccionar una Playlist");
-        System.out.println("4. Quiero pasarme al plan Free");
-        System.out.println(Color.amarillo + "5. Salir" + Color.b);
+        System.out.println("2. Crear una nueva playlist");
+        System.out.println("3. Seleccionar y escuchar una Playlist");
+        System.out.println("4. Eliminar Playlist");
+        System.out.println("5. Quiero pasarme al plan Free");
+        System.out.println(Color.amarillo + "6. Salir" + Color.b);
         System.out.print(Color.rojo + "Elige una opción: \n" + Color.b);
     }
 }

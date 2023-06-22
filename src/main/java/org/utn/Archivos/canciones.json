@@ -6,7 +6,7 @@
   "comentarios" : "Para bailar",
   "genero" : "KPOP",
   "idCancion" : 1,
-  "reproduciendo" : true
+  "reproduciendo" : false
 }, {
   "nombre" : "A Place Where You Belong",
   "artista" : "Bullet for my Valentine",
@@ -87,5 +87,14 @@
   "comentarios" : "Clasico",
   "genero" : "ROCK",
   "idCancion" : 10,
+  "reproduciendo" : false
+}, {
+  "nombre" : "One Dance",
+  "artista" : "Drake",
+  "album" : "Keep The Familiy Close",
+  "duracion" : "2:53",
+  "comentarios" : "Excelente",
+  "genero" : "POP",
+  "idCancion" : 11,
   "reproduciendo" : false
 } ]

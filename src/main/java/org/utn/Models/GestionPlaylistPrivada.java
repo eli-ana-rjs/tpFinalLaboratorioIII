@@ -16,7 +16,7 @@ public class GestionPlaylistPrivada{
     //endregion
 
     //Crear Playlist
-    public void crearPlaylist(int idCliente){
+    public PlaylistPrivada crearPlaylist(int idCliente){
         Scanner scanner = new Scanner(System.in);
         PlaylistPrivada playlistPrivada = new PlaylistPrivada();
         int ultimoID=0;
@@ -27,7 +27,9 @@ public class GestionPlaylistPrivada{
         playlistPrivada.setIdPlaylist(++ultimoID);
         repoPlaylistPriv.agregar(playlistPrivada);
         System.out.println("Playlist creada con exito!");
-        scanner.close();
+        //
+
+        return playlistPrivada;
     }
 
     //Agregar cancion a Playlist
@@ -36,7 +38,6 @@ public class GestionPlaylistPrivada{
         GestionCancion gestionCancion = new GestionCancion();
         Cancion cancion = new Cancion();
         int idCancion=0;
-        gestionCancion.mostrarTodas();
         System.out.println("Ingrese ID de la cancion que desea agregar a su playlist");
         try{
             idCancion = scanner.nextInt();
@@ -44,10 +45,7 @@ public class GestionPlaylistPrivada{
         catch (InputMismatchException e) {
             System.out.println("Ingrese un numero");
         }
-        finally {
-            scanner.reset();
-            scanner.close();
-        }
+
         try {
             cancion =  gestionCancion.existe(idCancion);
             if (cancion != null) {

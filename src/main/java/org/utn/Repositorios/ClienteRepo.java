@@ -78,8 +78,6 @@ public class ClienteRepo implements IRepository<Cliente> {
 
                 System.out.println("Usuario modificado exitosamente");
                 break;
-            } else {
-                System.out.println("Usuario no encontrado");
             }
         }
 

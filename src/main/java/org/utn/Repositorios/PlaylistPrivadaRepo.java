@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PlaylistPrivadaRepo implements IRepository<PlaylistPrivada> {
 
-    public final File archivoPlaylistPrivada= new File("src\\main\\java\\org\\utn\\Archivos\\playlistPrivada.json");
+    public final File archivoPlaylistPrivada= new File("src/main/java/org/utn/Archivos/playlistPrivada.json");
     public final ObjectMapper mapper = new ObjectMapper();
     public List<PlaylistPrivada> listaPlaylistPrivada;
 

@@ -15,15 +15,15 @@ import java.util.List;
 public class CancionRepo implements IRepository<Cancion> {
 
     /**
-     * Constante PI
+     * Constante archivoCanciones
      */
-    public final File archivoCanciones = new File("C:\\Users\\Milagros\\Desktop\\tpFinalLaboratorioIII copia\\src\\main\\java\\org\\utn\\Archivos\\canciones.json");
+    public final File archivoCanciones = new File("src/main/java/org/utn/Archivos/canciones.json");
     /**
-     * Constante PI
+     * Constante mapper
      */
     public final ObjectMapper mapper = new ObjectMapper();
     /**
-     * Constante PI
+     * Constante listaCanciones
      */
     public List<Cancion> listaCanciones;
 
@@ -158,12 +158,9 @@ public class CancionRepo implements IRepository<Cancion> {
     @Override
     public void eliminar(Cancion objeto) {
         cargar();
-        for (Cancion c : this.listaCanciones) {
-            if (objeto.getNombre().equals(c.getNombre()) && objeto.getArtista().equals(c.getArtista())) {
-                this.listaCanciones.remove(objeto);
-                break;
-            }
-        }
+
+        this.listaCanciones.remove(objeto);
+
         guardar();
     }
 
@@ -173,7 +170,7 @@ public class CancionRepo implements IRepository<Cancion> {
      */
     @Override
     public List<Cancion> listar() {
-
+        cargar();
         return this.listaCanciones;
     }
 
