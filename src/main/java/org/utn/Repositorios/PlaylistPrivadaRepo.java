@@ -73,14 +73,8 @@ public class PlaylistPrivadaRepo implements IRepository<PlaylistPrivada> {
     @Override
     public void eliminar(PlaylistPrivada objeto) {
         cargar();
-        for (PlaylistPrivada playlistPrivada : this.listaPlaylistPrivada) {
-            if (listaPlaylistPrivada.equals(objeto)) {
-                this.listaPlaylistPrivada.remove(playlistPrivada);
-                break;
-            }
-        }
+        this.listaPlaylistPrivada.remove(objeto);
         guardar();
     }
     //endregion
-
 }

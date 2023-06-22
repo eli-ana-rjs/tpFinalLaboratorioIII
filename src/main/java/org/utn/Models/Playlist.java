@@ -22,6 +22,15 @@ public abstract class Playlist {
     //endregion
 
     //region Getters y Setters
+
+    public int getIdPlaylist() {
+        return idPlaylist;
+    }
+
+    public void setIdPlaylist(int idPlaylist) {
+        this.idPlaylist = idPlaylist;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -45,4 +54,16 @@ public abstract class Playlist {
         return "Playlist: " + nombre + "\t| ID: " +idPlaylist +"\nCanciones:" + listaCanciones;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Playlist playlist = (Playlist) o;
+        return idPlaylist == playlist.idPlaylist;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idPlaylist);
+    }
 }
