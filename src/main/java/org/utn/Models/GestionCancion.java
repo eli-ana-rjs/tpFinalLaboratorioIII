@@ -1,4 +1,5 @@
 package org.utn.Models;
+
 import org.utn.Repositorios.CancionRepo;
 import org.utn.Utilidades.Utilidades;
 
@@ -50,10 +51,6 @@ public class GestionCancion {
             }
 
         } while (salir != 0);
-
-        scan.close();
-        scanString.close();
-
     }
 
     /**
@@ -597,33 +594,31 @@ public class GestionCancion {
                         eleccion = 1;
                         break;
                 }
-            }while (eleccion == 0) ;
-        }catch(InputMismatchException e){
+            } while (eleccion == 0);
+        } catch (InputMismatchException e) {
             System.out.println("Opcion invalida");
         }
-
     }
 
-    public void menuReproduccionPlaylistPrivada(int idPlaylist){
-
-        GestionPlaylistPrivada gestionPlaylistPrivada = new GestionPlaylistPrivada();
-        PlaylistPrivada playlistPrivada = new PlaylistPrivada();
-
-        String opcion;
+    public void menuReproduccionPlaylistPrivada(PlaylistPrivada playlistActiva) {
         int eleccion = 0;
         int busqueda = 0;
-        int id;
-
+        Cancion cancion = new Cancion();
+        GestionPlaylistPrivada gestionPlaylistPrivada = new GestionPlaylistPrivada();
         dibujarRectanguloTexto("Reproductor");
-        try {
-            do {
-                Cancion cancionNoReproducir = new Cancion();
-                Cancion cancionReproducida = buscarCancionReproducida();
-                boolean encontrar = buscarCancion(cancionReproducida);
+        do {
+            gestionPlaylistPrivada.verCanciones(playlistActiva);
+            System.out.println("Ingrese ID de la cancion que desea reproducir");
+            try {
+                eleccion = scan.nextInt();
 
-                if (encontrar) {
-
-                    mostrarCancionReproducida(cancionReproducida);
+            } catch (InputMismatchException e) {
+                System.out.println(e.getMessage());
+            }
+            cancion = existeEnPlaylist(eleccion, playlistActiva.getListaCanciones());
+            try {
+                if (cancion != null) {
+                    mostrarCancionReproducida(cancion);
                     int duracion = 30;
                     for (int segundos = 0; segundos <= duracion; segundos++) {
 
@@ -635,83 +630,117 @@ public class GestionCancion {
                             e.printStackTrace();
                         }
                     }
-
-                    System.out.println("\n1- Volver a la playlist 2- Volver al menu principal\n");
-                    busqueda = scan.nextInt();
-
                 } else {
-                    System.out.println("\n<< Ninguna cancion reproduciendo >>");
-                    System.out.println("\n1- Volver a la playlist 2- Volver al menu principal");
-                    busqueda = scan.nextInt();
+                    throw new IllegalArgumentException("No existe esa cancion en la playlist, ingrese otro id");
                 }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println("\n1- Volver a la playlist | 2- Volver al menu principal\n");
+            busqueda = scan.nextInt();
+            switch (busqueda) {
+                case 1:
+                    menuReproduccionPlaylistPrivada(playlistActiva);
+                    break;
+                case 2:
+                    System.out.println("Hasta la proxima");
+                    eleccion = 1;
+                    break;
+            }
+        } while (eleccion == 0);
+    }
 
-                switch (busqueda) {
+    public void menuReproduccionPlaylistPublica(PlaylistPublica playlistActiva) {
+        int eleccion = 0;
+        int busqueda = 0;
+        Cancion cancion = new Cancion();
+        GestionPlaylistPublica gestionPlaylistPublica = new GestionPlaylistPublica();
+        dibujarRectanguloTexto("Reproductor");
+        do {
+            gestionPlaylistPublica.verCanciones(playlistActiva);
+            System.out.println("Ingrese ID de la cancion que desea reproducir");
+            try {
+                eleccion = scan.nextInt();
 
-                    case 1:
-                        playlistPrivada = gestionPlaylistPrivada.existePlaylist(idPlaylist);
-                        if(playlistPrivada != null){
-                            gestionPlaylistPrivada.verCanciones(playlistPrivada);
+            } catch (InputMismatchException e) {
+                System.out.println(e.getMessage());
+            }
+            cancion = existeEnPlaylist(eleccion, playlistActiva.getListaCanciones());
+            try {
+                if (cancion != null) {
+                    mostrarCancionReproducida(cancion);
+                    int duracion = 30;
+                    for (int segundos = 0; segundos <= duracion; segundos++) {
+
+                        System.out.print("\u2588"); // Carácter especial que representa un bloque sólido
+
+                        try {
+                            Thread.sleep(200); // Espera 0.2 segundos
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                        cancionNoReproducir = cancionReproducida;
-                        seteoReproduciendo(cancionNoReproducir);
-                        System.out.println("Ingrese el numero de cancion que desea reproducir");
-                        id = scan.nextInt();
-                        cancionReproducida = buscarPorID(id);
-                        seteoReproduciendo(cancionReproducida);
-                        break;
-
-                    case 2:
-                        System.out.println("Hasta la proxima");
-                        seteoReproduciendo(cancionReproducida);
-                        eleccion = 1;
-                        break;
+                    }
+                } else {
+                    throw new IllegalArgumentException("No existe esa cancion en la playlist, ingrese otro id");
                 }
-            }while (eleccion == 0) ;
-        }catch(InputMismatchException e){
-            System.out.println("Opcion invalida");
-        }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println("\n1- Volver a la playlist | 2- Volver al menu principal\n");
+            busqueda = scan.nextInt();
+            switch (busqueda) {
+                case 1:
+                    menuReproduccionPlaylistPublica(playlistActiva);
+                    break;
+                case 2:
+                    System.out.println("Hasta la proxima");
+                    eleccion = 1;
+                    break;
+            }
+        } while (eleccion == 0);
+    }
 
+    /**
+     * Muestra la cancion reproducida
+     *
+     * @param cancionReproducida de tipo Cancion
+     */
+    public void mostrarCancionReproducida(Cancion cancionReproducida) {
+        System.out.println("<<< Reproduciendo " + cancionReproducida.getNombre() + " de " + cancionReproducida.getArtista() + " >>>");
     }
 
 
     /**
-     * Muestra la cancion reproducida
-     * @param cancionReproducida de tipo Cancion
-     */
-    public void mostrarCancionReproducida(Cancion cancionReproducida){
-        System.out.println("<<< Reproduciendo " + cancionReproducida.getNombre()+" de "+ cancionReproducida.getArtista() + " >>>");
-    }
-
-
-    /**Busca por id una cancion y retorna la Cancion
+     * Busca por id una cancion y retorna la Cancion
+     *
      * @param id de tipo int
      * @return retorna una cancion o null si no la encuentra
      */
-    public Cancion existe(int id){
+    public Cancion existe(int id) {
         List<Cancion> listaCanciones = repo.listar();
-        for (Cancion cancion : listaCanciones){
-            if (cancion.getIdCancion() == id){
+        for (Cancion cancion : listaCanciones) {
+            if (cancion.getIdCancion() == id) {
                 return cancion;
             }
         }
         return null;
     }
 
-    /**Busca por id una cancion y la retorna si existe. Recibe una lista de canciones por parametro     *
-     * @param id de tipo int
+    /**
+     * Busca por id una cancion y la retorna si existe. Recibe una lista de canciones por parametro     *
+     *
+     * @param id                 de tipo int
      * @param listaCancionesUser de tipo lista
      * @return retorna la cancion o null si no existe en la playlist
      */
-    public Cancion existeEnPlaylist (int id, List<Cancion> listaCancionesUser){
-        for (Cancion cancion : listaCancionesUser){
-            if (cancion.getIdCancion() == id){
+    public Cancion existeEnPlaylist(int id, List<Cancion> listaCancionesUser) {
+        for (Cancion cancion : listaCancionesUser) {
+            if (cancion.getIdCancion() == id) {
                 return cancion;
             }
         }
         return null;
     }
-
-
 
 
 //endregion
